@@ -1,18 +1,13 @@
-name: Deploy Astro site to GitHub Pages
+name: Deploy Astro site to Pages
 
 on:
   push:
-    branches: ["main"] # main 브랜치 푸시 시 자동 배포
-  workflow_dispatch: # 수동 실행 가능
+    branches: ["main"]
 
 permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
 
 jobs:
   build:
@@ -25,20 +20,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build project
+      - name: Build
         run: pnpm build
 
-      - name: Upload dist as artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
