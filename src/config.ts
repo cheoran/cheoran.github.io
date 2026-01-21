@@ -84,7 +84,7 @@ export const commentsConfig = {
 	mapping: "pathname",
 	reactionsEnabled: "1",
 	emitMetadata: "0",
-	inputPosition: "top",
+	inputPosition: "bottom",
 	theme: "preferred_color_scheme",
 	lang: "ko",
 };

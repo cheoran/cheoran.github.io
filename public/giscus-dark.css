@@ -1,0 +1,33 @@
+:root {
+  color-scheme: dark;
+  --color-prettylights-syntax-comment: #a59f95;
+  --color-prettylights-syntax-entity: #e9e4da;
+  --color-prettylights-syntax-string: #d7d1c6;
+  --color-prettylights-syntax-variable: #e9e4da;
+  --color-prettylights-syntax-keyword: #e9e4da;
+  --color-prettylights-syntax-markup-bold: #e9e4da;
+  --color-prettylights-syntax-markup-italic: #e9e4da;
+  --color-prettylights-syntax-constant: #e9e4da;
+  --color-prettylights-syntax-storage-modifier-import: #e9e4da;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #cf6a6a;
+
+  --color-fg-default: #e4dfd6;
+  --color-fg-muted: #b1aba1;
+  --color-fg-subtle: #8c877f;
+  --color-canvas-default: #131211;
+  --color-canvas-subtle: #191715;
+  --color-border-default: #2c2824;
+  --color-border-muted: #24221f;
+  --color-neutral-emphasis-plus: #e4dfd6;
+  --color-neutral-emphasis: #c5bfb6;
+  --color-neutral-muted: #2c2824;
+  --color-accent-fg: #e4dfd6;
+  --color-accent-emphasis: #c5bfb6;
+  --color-accent-muted: #2c2824;
+  --color-accent-subtle: #1f1d1a;
+}
+
+body {
+  background: var(--color-canvas-default);
+  color: var(--color-fg-default);
+}

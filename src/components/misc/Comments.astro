@@ -1,6 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
 import { commentsConfig } from "../../config";
+import I18nKey from "../../i18n/i18nKey";
+import { i18n } from "../../i18n/translation";
 
 const ready =
 	commentsConfig.repo &&
@@ -9,7 +10,10 @@ const ready =
 	commentsConfig.categoryId;
 ---
 
-<section class="mt-8 pt-6 border-t border-dashed border-[var(--line-divider)]">
+<section class="mt-10 pt-8 border-t border-dashed border-[var(--line-divider)]">
+	<div class="flex items-center justify-between mb-5">
+		<h3 class="text-lg font-bold text-90">{i18n(I18nKey.comments)}</h3>
+	</div>
 	{
 		ready ? (
 			<div class="giscus" data-theme="preferred_color_scheme">
@@ -30,9 +34,63 @@ const ready =
 				></script>
 			</div>
 		) : (
-			<p class="text-60">
+			<p class="text-60 text-sm">
 				Giscus 설정이 비어있어요. `src/config.ts`의 `commentsConfig`에 repoId와 categoryId를 입력해 주세요.
 			</p>
 		)
 	}
 </section>
+
+<style>
+	.giscus,
+	.giscus-frame {
+		width: 100%;
+	}
+	.giscus iframe {
+		width: 100%;
+	}
+	.giscus-frame {
+		border: 1px solid var(--line-divider);
+		border-radius: var(--radius-large);
+	}
+</style>
+
+<script is:inline>
+	const syncGiscusTheme = () => {
+		const iframe = document.querySelector("iframe.giscus-frame");
+		if (!iframe) return;
+		const theme = document.documentElement.classList.contains("dark")
+			? "dark"
+			: "light";
+		iframe.contentWindow?.postMessage(
+			{ giscus: { setConfig: { theme } } },
+			"https://giscus.app",
+		);
+	};
+
+	const observeTheme = () => {
+		const observer = new MutationObserver(syncGiscusTheme);
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["class"],
+		});
+	};
+
+	window.addEventListener("message", (event) => {
+		if (event.origin !== "https://giscus.app") return;
+		if (event.data?.giscus?.ready) {
+			syncGiscusTheme();
+		}
+	});
+
+	window.addEventListener("load", () => {
+		syncGiscusTheme();
+		setTimeout(syncGiscusTheme, 300);
+		observeTheme();
+	});
+	document.addEventListener("swup:contentReplaced", () => {
+		syncGiscusTheme();
+		setTimeout(syncGiscusTheme, 300);
+		observeTheme();
+	});
+</script>
