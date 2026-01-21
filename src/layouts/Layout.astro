@@ -529,9 +529,11 @@ function createPhotoSwipe() {
 		wheelToZoom: true,
 		arrowPrev: false,
 		arrowNext: false,
-		imageClickAction: 'close',
-		tapAction: 'close',
+		imageClickAction: 'zoom',
+		tapAction: 'zoom',
 		doubleTapAction: 'zoom',
+		secondaryZoomLevel: 2,
+		maxZoomLevel: 3,
 	})
 
 	lightbox.addFilter("domItemData", (itemData, element) => {

@@ -1,0 +1,33 @@
+:root {
+  color-scheme: light;
+  --color-prettylights-syntax-comment: #5a5a55;
+  --color-prettylights-syntax-entity: #1b1b18;
+  --color-prettylights-syntax-string: #2a2a25;
+  --color-prettylights-syntax-variable: #1b1b18;
+  --color-prettylights-syntax-keyword: #1b1b18;
+  --color-prettylights-syntax-markup-bold: #1b1b18;
+  --color-prettylights-syntax-markup-italic: #1b1b18;
+  --color-prettylights-syntax-constant: #1b1b18;
+  --color-prettylights-syntax-storage-modifier-import: #1b1b18;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #b54545;
+
+  --color-fg-default: #171714;
+  --color-fg-muted: #565651;
+  --color-fg-subtle: #7a7a74;
+  --color-canvas-default: #f9f8f5;
+  --color-canvas-subtle: #f1efe9;
+  --color-border-default: #d9d5cf;
+  --color-border-muted: #e3dfd9;
+  --color-neutral-emphasis-plus: #171714;
+  --color-neutral-emphasis: #2b2a25;
+  --color-neutral-muted: #ece8e1;
+  --color-accent-fg: #1b1b18;
+  --color-accent-emphasis: #1b1b18;
+  --color-accent-muted: #e5e1da;
+  --color-accent-subtle: #efece5;
+}
+
+body {
+  background: var(--color-canvas-default);
+  color: var(--color-fg-default);
+}

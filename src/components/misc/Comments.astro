@@ -1,6 +1,7 @@
 ---
-import { Icon } from "astro-icon/components";
 import { commentsConfig } from "../../config";
+import I18nKey from "../../i18n/i18nKey";
+import { i18n } from "../../i18n/translation";
 
 const ready =
 	commentsConfig.repo &&
@@ -9,30 +10,112 @@ const ready =
 	commentsConfig.categoryId;
 ---
 
-<section class="mt-8 pt-6 border-t border-dashed border-[var(--line-divider)]">
+<section class="mt-10 pt-8 border-t border-dashed border-[var(--line-divider)]">
+	<div class="flex items-center justify-between mb-5">
+		<h3 class="text-lg font-bold text-90">{i18n(I18nKey.comments)}</h3>
+	</div>
 	{
 		ready ? (
-			<div class="giscus" data-theme="preferred_color_scheme">
-				<script
-					src="https://giscus.app/client.js"
-					data-repo={commentsConfig.repo}
-					data-repo-id={commentsConfig.repoId}
-					data-category={commentsConfig.category}
-					data-category-id={commentsConfig.categoryId}
-					data-mapping={commentsConfig.mapping}
-					data-reactions-enabled={commentsConfig.reactionsEnabled}
-					data-emit-metadata={commentsConfig.emitMetadata}
-					data-input-position={commentsConfig.inputPosition}
-					data-theme={commentsConfig.theme}
-					data-lang={commentsConfig.lang}
-					crossorigin="anonymous"
-					async
-				></script>
-			</div>
+			<div
+				id="giscus-root"
+				class="giscus"
+				data-repo={commentsConfig.repo}
+				data-repo-id={commentsConfig.repoId}
+				data-category={commentsConfig.category}
+				data-category-id={commentsConfig.categoryId}
+				data-mapping={commentsConfig.mapping}
+				data-reactions-enabled={commentsConfig.reactionsEnabled}
+				data-emit-metadata={commentsConfig.emitMetadata}
+				data-input-position={commentsConfig.inputPosition}
+				data-lang={commentsConfig.lang}
+			></div>
 		) : (
-			<p class="text-60">
+			<p class="text-60 text-sm">
 				Giscus 설정이 비어있어요. `src/config.ts`의 `commentsConfig`에 repoId와 categoryId를 입력해 주세요.
 			</p>
 		)
 	}
 </section>
+
+<style>
+	.giscus,
+	.giscus-frame {
+		width: 100%;
+	}
+	.giscus iframe {
+		width: 100%;
+	}
+	.giscus-frame {
+		border: 1px solid var(--line-divider);
+		border-radius: var(--radius-large);
+	}
+</style>
+
+<script is:inline>
+	const getGiscusTheme = () => {
+		const base =
+			"https://raw.githubusercontent.com/cheoran/cheoran.github.io/main/public";
+		return document.documentElement.classList.contains("dark")
+			? `${base}/giscus-dark.css`
+			: `${base}/giscus-light.css`;
+	};
+
+	const mountGiscus = () => {
+		const root = document.getElementById("giscus-root");
+		if (!root || root.dataset.loaded === "true") return;
+
+		const script = document.createElement("script");
+		script.src = "https://giscus.app/client.js";
+		script.async = true;
+		script.crossOrigin = "anonymous";
+		script.setAttribute("data-theme", getGiscusTheme());
+
+		[
+			"repo",
+			"repoId",
+			"category",
+			"categoryId",
+			"mapping",
+			"reactionsEnabled",
+			"emitMetadata",
+			"inputPosition",
+			"lang",
+		].forEach((key) => {
+			const attr = `data-${key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)}`;
+			const value = root.getAttribute(attr);
+			if (value) script.setAttribute(attr, value);
+		});
+
+		root.appendChild(script);
+		root.dataset.loaded = "true";
+	};
+
+	const setGiscusTheme = () => {
+		const iframe = document.querySelector("iframe.giscus-frame");
+		if (!iframe) return;
+		iframe.contentWindow?.postMessage(
+			{ giscus: { setConfig: { theme: getGiscusTheme() } } },
+			"https://giscus.app"
+		);
+	};
+
+	const observeTheme = () => {
+		mountGiscus();
+		setGiscusTheme();
+		const observer = new MutationObserver(() => setGiscusTheme());
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["class"],
+		});
+	};
+
+	window.addEventListener("message", (event) => {
+		if (event.origin !== "https://giscus.app") return;
+		if (event.data?.giscus?.ready) {
+			setGiscusTheme();
+		}
+	});
+
+	window.addEventListener("load", observeTheme);
+	document.addEventListener("swup:contentReplaced", observeTheme);
+</script>
