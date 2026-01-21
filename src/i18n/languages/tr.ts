@@ -16,6 +16,8 @@ export const tr: Translation = {
 	[Key.untitled]: "Başlıksız",
 	[Key.uncategorized]: "Katagorisiz",
 	[Key.noTags]: "Tag Bulunamadı",
+	[Key.noCategories]: "Kategori bulunamadı",
+	[Key.noPosts]: "Gönderi yok",
 
 	[Key.wordCount]: "kelime",
 	[Key.wordsCount]: "kelime",

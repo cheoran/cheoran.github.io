@@ -10,7 +10,8 @@ const categories = await getCategoryList();
 const COLLAPSED_HEIGHT = "7.5rem";
 const COLLAPSE_THRESHOLD = 5;
 
-const isCollapsed = categories.length > 0;
+const hasCategories = categories.length > 0;
+const isCollapsed = hasCategories;
 
 interface Props {
 	class?: string;
@@ -31,13 +32,17 @@ const style = Astro.props.style;
     class={className}
     style={style}
 >
-    {categories.map((c) =>
-        <ButtonLink
-            url={c.url}
-            badge={String(c.count)}
-            label={`View all posts in the ${c.name.trim()} category`}
-        >
-            {c.name.trim()}
-        </ButtonLink>
+    {hasCategories ? (
+        categories.map((c) =>
+            <ButtonLink
+                url={c.url}
+                badge={String(c.count)}
+                label={`View all posts in the ${c.name.trim()} category`}
+            >
+                {c.name.trim()}
+            </ButtonLink>
+        )
+    ) : (
+        <div class="text-50 text-sm font-medium">{i18n(I18nKey.noCategories)}</div>
     )}
 </WidgetLayout>

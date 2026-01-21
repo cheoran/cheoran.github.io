@@ -16,6 +16,8 @@ export const zh_TW: Translation = {
 	[Key.untitled]: "無標題",
 	[Key.uncategorized]: "未分類",
 	[Key.noTags]: "無標籤",
+	[Key.noCategories]: "無分類",
+	[Key.noPosts]: "無文章",
 
 	[Key.wordCount]: "字",
 	[Key.wordsCount]: "字",

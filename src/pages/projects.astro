@@ -1,71 +1,44 @@
 ---
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 
-const projects = [
-	{
-		name: "Temp_Send",
-		link: "https://tempsend.example.com",
-		description: "30초 만에 사라지는 임시 파일 공유 서비스.",
-		stack: ["Django", "Redis", "Celery"],
-		accent: "from-slate-200 via-indigo-100 to-slate-100",
-		year: "2024",
-	},
-	{
-		name: "배틀이",
-		link: "https://automsg.example.com",
-		description: "팀 내 커뮤니케이션을 편하게 돕는 디스코드 관리 도구.",
-		stack: ["Next.js", "React", "TypeScript", "MongoDB"],
-		accent: "from-purple-500 via-indigo-500 to-purple-600",
-		year: "2024",
-	},
-	{
-		name: "AutoMSG",
-		link: "https://noirnotes.example.com",
-		description: "디스코드에서 자동으로 메시지를 생성하고 관리할 수 있는 서비스.",
-		stack: ["Node", "Express", "Docker"],
-		accent: "from-blue-500 via-blue-600 to-indigo-600",
-		year: "2023",
-	},
-	{
-		name: "Django_RestFramework_Auth",
-		link: "https://horizondeck.example.com",
-		description: "Django RestFramework 기반 인증 서비스 템플릿.",
-		stack: ["Django", "REST", "Auth"],
-		accent: "from-slate-200 via-slate-100 to-slate-50",
-		year: "2023",
-	},
-];
+const projects = [];
 ---
 
 <MainGridLayout title="Projects" description="프로젝트 목록">
-	<div class="grid gap-4 md:grid-cols-2">
-		{projects.map((project) => (
-			<article class="card-base rounded-[var(--radius-large)] overflow-hidden transition hover:-translate-y-0.5">
-				<div class={`h-44 w-full bg-gradient-to-r ${project.accent} flex items-center justify-center`}>
-					<div class="text-white/85 text-sm font-medium tracking-wide uppercase">Preview</div>
-				</div>
-				<div class="px-7 py-6">
-					<div class="flex items-center justify-between gap-3">
-						<a
-							class="text-2xl font-semibold text-[var(--primary)] hover:text-[var(--title-active)] transition"
-							href={project.link}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{project.name}
-						</a>
-						<span class="text-sm text-50">{project.year}</span>
+	{projects.length === 0 ? (
+		<div class="card-base rounded-[var(--radius-large)] p-8 text-center text-75">
+			아직 공개된 프로젝트가 없습니다.
+		</div>
+	) : (
+		<div class="grid gap-4 md:grid-cols-2">
+			{projects.map((project) => (
+				<article class="card-base rounded-[var(--radius-large)] overflow-hidden transition hover:-translate-y-0.5">
+					<div class={`h-44 w-full bg-gradient-to-r ${project.accent} flex items-center justify-center`}>
+						<div class="text-white/85 text-sm font-medium tracking-wide uppercase">Preview</div>
 					</div>
-					<p class="text-75 mt-2">{project.description}</p>
-					<div class="flex flex-wrap gap-2 text-sm text-50 mt-4">
-						{project.stack.map((tag) => (
-							<span class="rounded-full border border-black/10 dark:border-white/15 px-2.5 py-0.5">
-								{tag}
-							</span>
-						))}
+					<div class="px-7 py-6">
+						<div class="flex items-center justify-between gap-3">
+							<a
+								class="text-2xl font-semibold text-[var(--primary)] hover:text-[var(--title-active)] transition"
+								href={project.link}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{project.name}
+							</a>
+							<span class="text-sm text-50">{project.year}</span>
+						</div>
+						<p class="text-75 mt-2">{project.description}</p>
+						<div class="flex flex-wrap gap-2 text-sm text-50 mt-4">
+							{project.stack.map((tag) => (
+								<span class="rounded-full border border-black/10 dark:border-white/15 px-2.5 py-0.5">
+									{tag}
+								</span>
+							))}
+						</div>
 					</div>
-				</div>
-			</article>
-		))}
-	</div>
+				</article>
+			))}
+		</div>
+	)}
 </MainGridLayout>

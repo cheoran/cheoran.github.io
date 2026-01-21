@@ -16,6 +16,8 @@ export const es: Translation = {
 	[Key.untitled]: "Sin título",
 	[Key.uncategorized]: "Sin categoría",
 	[Key.noTags]: "Sin etiquetas",
+	[Key.noCategories]: "Sin categorías",
+	[Key.noPosts]: "Sin publicaciones",
 
 	[Key.wordCount]: "palabra",
 	[Key.wordsCount]: "palabras",
