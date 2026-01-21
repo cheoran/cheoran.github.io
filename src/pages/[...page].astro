@@ -8,6 +8,31 @@ import { getSortedPosts } from "../utils/content-utils";
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts();
+	if (allBlogPosts.length === 0) {
+		return [
+			{
+				params: { page: undefined },
+				props: {
+					page: {
+						data: [],
+						start: 0,
+						end: 0,
+						size: PAGE_SIZE,
+						total: 0,
+						currentPage: 1,
+						lastPage: 1,
+						url: {
+							current: "/",
+							prev: undefined,
+							next: undefined,
+							first: "/",
+							last: "/",
+						},
+					},
+				},
+			},
+		];
+	}
 	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 // https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
@@ -18,6 +43,18 @@ const len = page.data.length;
 ---
 
 <MainGridLayout>
-    <PostPage page={page}></PostPage>
-    <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
+	{len === 0 ? (
+		<div class="card-base rounded-[var(--radius-large)] p-8 text-center text-75">
+			아직 게시글이 없습니다.
+		</div>
+	) : (
+		<>
+			<PostPage page={page}></PostPage>
+			<Pagination
+				class="mx-auto onload-animation"
+				page={page}
+				style={`animation-delay: calc(var(--content-delay) + ${len * 50}ms)`}
+			></Pagination>
+		</>
+	)}
 </MainGridLayout>

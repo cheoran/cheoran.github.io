@@ -16,6 +16,8 @@ export const th: Translation = {
 	[Key.untitled]: "ไม่ได้ตั้งชื่อ",
 	[Key.uncategorized]: "ไม่ได้จัดหมวดหมู่",
 	[Key.noTags]: "ไม่มีป้ายกำกับ",
+	[Key.noCategories]: "ไม่มีหมวดหมู่",
+	[Key.noPosts]: "ไม่มีโพสต์",
 
 	[Key.wordCount]: "คำ",
 	[Key.wordsCount]: "คำ",

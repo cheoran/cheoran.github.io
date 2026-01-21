@@ -13,6 +13,8 @@ enum I18nKey {
 	untitled = "untitled",
 	uncategorized = "uncategorized",
 	noTags = "noTags",
+	noCategories = "noCategories",
+	noPosts = "noPosts",
 
 	wordCount = "wordCount",
 	wordsCount = "wordsCount",

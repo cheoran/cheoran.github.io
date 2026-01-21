@@ -11,7 +11,8 @@ const tags = await getTagList();
 
 const COLLAPSED_HEIGHT = "8rem";
 
-const isCollapsed = tags.length > 0;
+const hasTags = tags.length > 0;
+const isCollapsed = hasTags;
 
 interface Props {
 	class?: string;
@@ -31,11 +32,15 @@ const style = Astro.props.style;
     class={className}
     style={style}
 >
-    <div class="flex gap-2 flex-wrap">
-        {tags.map(t => (
-            <ButtonTag href={getTagUrl(t.name)} label={`View all posts with the ${t.name.trim()} tag`}>
-                {t.name.trim()}
-            </ButtonTag>
-        ))}
-    </div>
+    {hasTags ? (
+        <div class="flex gap-2 flex-wrap">
+            {tags.map(t => (
+                <ButtonTag href={getTagUrl(t.name)} label={`View all posts with the ${t.name.trim()} tag`}>
+                    {t.name.trim()}
+                </ButtonTag>
+            ))}
+        </div>
+    ) : (
+        <div class="text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>
+    )}
 </WidgetLayout>

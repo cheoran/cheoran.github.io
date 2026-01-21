@@ -16,6 +16,8 @@ export const ja: Translation = {
 	[Key.untitled]: "タイトルなし",
 	[Key.uncategorized]: "カテゴリなし",
 	[Key.noTags]: "タグなし",
+	[Key.noCategories]: "カテゴリがありません",
+	[Key.noPosts]: "投稿がありません",
 
 	[Key.wordCount]: "文字",
 	[Key.wordsCount]: "文字",
