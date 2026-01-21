@@ -85,7 +85,7 @@ export const commentsConfig = {
 	reactionsEnabled: "1",
 	emitMetadata: "0",
 	inputPosition: "bottom",
-	theme: "https://raw.githubusercontent.com/cheoran/cheoran.github.io/main/public/giscus-light.css",
+	theme: "preferred_color_scheme",
 	lang: "ko",
 };
 

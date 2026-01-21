@@ -16,19 +16,23 @@ const ready =
 	</div>
 	{
 		ready ? (
-			<div
-				id="giscus-root"
-				class="giscus"
-				data-repo={commentsConfig.repo}
-				data-repo-id={commentsConfig.repoId}
-				data-category={commentsConfig.category}
-				data-category-id={commentsConfig.categoryId}
-				data-mapping={commentsConfig.mapping}
-				data-reactions-enabled={commentsConfig.reactionsEnabled}
-				data-emit-metadata={commentsConfig.emitMetadata}
-				data-input-position={commentsConfig.inputPosition}
-				data-lang={commentsConfig.lang}
-			></div>
+			<div class="giscus" data-theme="preferred_color_scheme">
+				<script
+					src="https://giscus.app/client.js"
+					data-repo={commentsConfig.repo}
+					data-repo-id={commentsConfig.repoId}
+					data-category={commentsConfig.category}
+					data-category-id={commentsConfig.categoryId}
+					data-mapping={commentsConfig.mapping}
+					data-reactions-enabled={commentsConfig.reactionsEnabled}
+					data-emit-metadata={commentsConfig.emitMetadata}
+					data-input-position={commentsConfig.inputPosition}
+					data-theme={commentsConfig.theme}
+					data-lang={commentsConfig.lang}
+					crossorigin="anonymous"
+					async
+				></script>
+			</div>
 		) : (
 			<p class="text-60 text-sm">
 				Giscus 설정이 비어있어요. `src/config.ts`의 `commentsConfig`에 repoId와 categoryId를 입력해 주세요.
@@ -52,57 +56,20 @@ const ready =
 </style>
 
 <script is:inline>
-	const getGiscusTheme = () => {
-		const base =
-			"https://raw.githubusercontent.com/cheoran/cheoran.github.io/main/public";
-		return document.documentElement.classList.contains("dark")
-			? `${base}/giscus-dark.css`
-			: `${base}/giscus-light.css`;
-	};
-
-	const mountGiscus = () => {
-		const root = document.getElementById("giscus-root");
-		if (!root || root.dataset.loaded === "true") return;
-
-		const script = document.createElement("script");
-		script.src = "https://giscus.app/client.js";
-		script.async = true;
-		script.crossOrigin = "anonymous";
-		script.setAttribute("data-theme", getGiscusTheme());
-
-		[
-			"repo",
-			"repoId",
-			"category",
-			"categoryId",
-			"mapping",
-			"reactionsEnabled",
-			"emitMetadata",
-			"inputPosition",
-			"lang",
-		].forEach((key) => {
-			const attr = `data-${key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)}`;
-			const value = root.getAttribute(attr);
-			if (value) script.setAttribute(attr, value);
-		});
-
-		root.appendChild(script);
-		root.dataset.loaded = "true";
-	};
-
-	const setGiscusTheme = () => {
+	const syncGiscusTheme = () => {
 		const iframe = document.querySelector("iframe.giscus-frame");
 		if (!iframe) return;
+		const theme = document.documentElement.classList.contains("dark")
+			? "dark"
+			: "light";
 		iframe.contentWindow?.postMessage(
-			{ giscus: { setConfig: { theme: getGiscusTheme() } } },
-			"https://giscus.app"
+			{ giscus: { setConfig: { theme } } },
+			"https://giscus.app",
 		);
 	};
 
 	const observeTheme = () => {
-		mountGiscus();
-		setGiscusTheme();
-		const observer = new MutationObserver(() => setGiscusTheme());
+		const observer = new MutationObserver(syncGiscusTheme);
 		observer.observe(document.documentElement, {
 			attributes: true,
 			attributeFilter: ["class"],
@@ -112,10 +79,18 @@ const ready =
 	window.addEventListener("message", (event) => {
 		if (event.origin !== "https://giscus.app") return;
 		if (event.data?.giscus?.ready) {
-			setGiscusTheme();
+			syncGiscusTheme();
 		}
 	});
 
-	window.addEventListener("load", observeTheme);
-	document.addEventListener("swup:contentReplaced", observeTheme);
+	window.addEventListener("load", () => {
+		syncGiscusTheme();
+		setTimeout(syncGiscusTheme, 300);
+		observeTheme();
+	});
+	document.addEventListener("swup:contentReplaced", () => {
+		syncGiscusTheme();
+		setTimeout(syncGiscusTheme, 300);
+		observeTheme();
+	});
 </script>
