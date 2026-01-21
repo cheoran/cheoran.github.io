@@ -1,0 +1,143 @@
+---
+import { Icon } from "astro-icon/components";
+import I18nKey from "../../i18n/i18nKey";
+import { i18n } from "../../i18n/translation";
+
+interface Props {
+	id: string;
+	name?: string;
+	isCollapsed?: boolean;
+	collapsedHeight?: string;
+	collapsedRows?: number;
+	expandGapClass?: string;
+	collapseGapClass?: string;
+	class?: string;
+	style?: string;
+}
+const {
+	id,
+	name,
+	isCollapsed,
+	collapsedHeight,
+	collapsedRows = 3,
+	expandGapClass = "mt-2",
+	collapseGapClass = "mt-2",
+	style,
+} = Astro.props;
+const className = Astro.props.class;
+---
+<widget-layout
+    data-id={id}
+    data-is-collapsed={String(isCollapsed)}
+    data-collapse-rows={String(collapsedRows)}
+    class={"pb-4 card-base " + className}
+    style={style}
+>
+    <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
+        before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
+        before:absolute before:left-[-16px] before:top-[5.5px]">{name}</div>
+    <div id={id} class="collapse-wrapper px-4 overflow-hidden">
+        <slot></slot>
+    </div>
+    {isCollapsed && <div class:list={["expand-btn px-4 -mb-2 hidden", expandGapClass]}>
+        <button class="btn-plain rounded-lg w-full h-9">
+            <div class="text-[var(--primary)] flex items-center justify-center gap-2 -translate-x-2">
+                <Icon name="material-symbols:more-horiz" class="text-[1.75rem]"></Icon> {i18n(I18nKey.more)}
+            </div>
+        </button>
+    </div>}
+    {isCollapsed && <div class:list={["collapse-btn px-4 -mb-2 hidden", collapseGapClass]}>
+        <button class="btn-plain rounded-lg w-full h-9">
+            <div class="text-[var(--primary)] flex items-center justify-center gap-2 -translate-x-1">
+                <Icon name="material-symbols:expand-less" class="text-[1.5rem]"></Icon> Fold
+            </div>
+        </button>
+    </div>}
+</widget-layout>
+
+<style define:vars={{ collapsedHeight }}>
+    .collapse-wrapper {
+        max-height: var(--collapsedHeight);
+        transition: max-height 0.3s ease;
+        will-change: max-height;
+    }
+</style>
+
+<script>
+    function getRowMetrics(wrapper) {
+        const content = wrapper.firstElementChild || wrapper;
+        const firstChild = content.firstElementChild;
+        if (!firstChild) return { rowHeight: 0, rowGap: 0 };
+        const rowHeight = firstChild.getBoundingClientRect().height;
+        const computed = getComputedStyle(content);
+        const rowGap = Number.parseFloat(computed.rowGap || computed.gap || "0") || 0;
+        return { rowHeight, rowGap };
+    }
+
+    class WidgetLayout extends HTMLElement {
+        constructor() {
+            super();
+
+            if (this.dataset.isCollapsed !== "true")
+                return;
+
+            const id = this.dataset.id;
+            const btn = this.querySelector('.expand-btn');
+            const collapseBtn = this.querySelector('.collapse-btn');
+            const wrapper = this.querySelector(`#${id}`)
+            const rows = Number.parseInt(this.dataset.collapseRows || "3", 10);
+            let expanded = false;
+
+            const applyState = () => {
+                const { rowHeight, rowGap } = getRowMetrics(wrapper);
+                const collapsedHeight = rowHeight * rows + rowGap * (rows - 1);
+                const fullHeight = wrapper!.scrollHeight;
+                if (fullHeight <= collapsedHeight + 2) {
+                    wrapper!.style.maxHeight = "none";
+                    btn!.classList.add('hidden');
+                    collapseBtn!.classList.add('hidden');
+                    expanded = false;
+                    return;
+                }
+                if (expanded) {
+                    wrapper!.style.maxHeight = `${fullHeight}px`;
+                    btn!.classList.add('hidden');
+                    collapseBtn!.classList.remove('hidden');
+                } else {
+                    wrapper!.style.maxHeight = `${collapsedHeight}px`;
+                    btn!.classList.remove('hidden');
+                    collapseBtn!.classList.add('hidden');
+                }
+            };
+
+            const disableButtons = () => {
+                btn!.classList.add('pointer-events-none');
+                collapseBtn!.classList.add('pointer-events-none');
+                setTimeout(() => {
+                    btn!.classList.remove('pointer-events-none');
+                    collapseBtn!.classList.remove('pointer-events-none');
+                }, 320);
+            };
+
+            requestAnimationFrame(applyState);
+            window.addEventListener('resize', applyState);
+            const observer = new ResizeObserver(applyState);
+            observer.observe(wrapper!);
+
+            btn!.addEventListener('click', () => {
+                expanded = true;
+                disableButtons();
+                applyState();
+            })
+            collapseBtn!.addEventListener('click', () => {
+                expanded = false;
+                disableButtons();
+                applyState();
+            })
+        }
+    }
+
+    if (!customElements.get("widget-layout")) {
+        customElements.define("widget-layout", WidgetLayout);
+    }
+</script>
