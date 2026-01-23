@@ -119,3 +119,12 @@
     }
     
 }
+
+:root.mono .custom-md .copy-btn {
+    background: oklch(0.32 0 0) !important;
+    color: oklch(0.78 0 0) !important;
+}
+
+:root.mono .custom-md .copy-btn .copy-btn-icon {
+    @apply fill-white/80;
+}

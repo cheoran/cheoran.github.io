@@ -1,0 +1,26 @@
+<svg shape-rendering="geometricPrecision" text-rendering="optimizeLegibility" xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220">
+
+  <rect x="8" y="8" width="884" height="204" rx="16" fill="#f7f8fb" stroke="#d8dee6"/>
+  <rect x="8" y="8" width="884" height="204" rx="16" fill="url(#grid)" opacity="0.35"/>
+
+  
+  <style>
+  .diagram-title { font-size: 13px; font-weight: 600; fill: #0b1324; }
+  line, path, polyline, polygon, rect { stroke-linecap: round; stroke-linejoin: round; }
+    text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif; fill: #0b1324; }
+    .title { font-size: 16px; font-weight: 600; }
+    .small { font-size: 11px; fill: #5b6472; }
+    .box { stroke: #2563eb; stroke-width: 1.5; fill: #f4f6fb; }
+  </style>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0 H0 V24" fill="none" stroke="#d8dee6" stroke-width="1" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <text x="60" y="30" class="title">비유: 방화벽 = 건물 출입 관리</text>
+  <rect x="60" y="60" width="360" height="40" class="box"/>
+  <text x="240" y="85" class="small" text-anchor="middle">인바운드: 외부 방문자 출입</text>
+
+  <rect x="480" y="60" width="360" height="40" class="box"/>
+  <text x="660" y="85" class="small" text-anchor="middle">아웃바운드: 내부 직원 외출</text>
+</svg>

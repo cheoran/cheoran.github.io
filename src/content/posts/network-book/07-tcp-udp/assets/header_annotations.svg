@@ -1,0 +1,37 @@
+<svg shape-rendering="geometricPrecision" text-rendering="optimizeLegibility" xmlns="http://www.w3.org/2000/svg" width="900" height="240" viewBox="0 0 900 240">
+
+  <rect x="8" y="8" width="884" height="224" rx="16" fill="#f7f8fb" stroke="#d8dee6"/>
+  <rect x="8" y="8" width="884" height="224" rx="16" fill="url(#grid)" opacity="0.35"/>
+
+  
+  <style>
+  .diagram-title { font-size: 13px; font-weight: 600; fill: #0b1324; }
+  line, path, polyline, polygon, rect { stroke-linecap: round; stroke-linejoin: round; }
+    text { font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif; fill: #0b1324; }
+    .title { font-size: 16px; font-weight: 600; }
+    .small { font-size: 10.5px; fill: #5b6472; }
+    .box { stroke: #2563eb; stroke-width: 1.5; fill: #f4f6fb; }
+    .line { stroke: #2f3745; stroke-width: 1.2; }
+  </style>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0 H0 V24" fill="none" stroke="#d8dee6" stroke-width="1" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <text x="60" y="30" class="title">헤더 필드 주석 예시</text>
+
+  <rect x="60" y="60" width="260" height="30" class="box"/>
+  <text x="190" y="80" class="small" text-anchor="middle">Source Port</text>
+  <line x1="320" y1="75" x2="520" y2="75" class="line"/>
+  <text x="540" y="80" class="small">송신 애플리케이션 식별</text>
+
+  <rect x="60" y="110" width="260" height="30" class="box"/>
+  <text x="190" y="130" class="small" text-anchor="middle">Sequence Number</text>
+  <line x1="320" y1="125" x2="520" y2="125" class="line"/>
+  <text x="540" y="130" class="small">전송 순서 보장</text>
+
+  <rect x="60" y="160" width="260" height="30" class="box"/>
+  <text x="190" y="180" class="small" text-anchor="middle">Checksum</text>
+  <line x1="320" y1="175" x2="520" y2="175" class="line"/>
+  <text x="540" y="180" class="small">오류 검출</text>
+</svg>

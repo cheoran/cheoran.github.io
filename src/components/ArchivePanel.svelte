@@ -89,7 +89,7 @@ onMount(async () => {
 
 <div class="card-base px-8 py-6">
     {#if ready && groups.length === 0}
-        <div class="text-center text-50 text-sm font-medium">{i18n(I18nKey.noPosts)}</div>
+        <div class="text-center text-75">{i18n(I18nKey.noPosts)}</div>
     {:else}
         {#each groups as group}
             <div>
