@@ -19,7 +19,7 @@ draft: false
 :::
 
 ## 08.1 목표
-![assets/http_tls_flow.png](./assets/http_tls_flow.png)
+![assets/http_tls_flow.png](./assets/http_tls_flow.webp)
 > 그림 08-1. HTTPS(HTTP over TLS) 통신 흐름
 
 - HTTP 요청/응답 구조를 설명한다.

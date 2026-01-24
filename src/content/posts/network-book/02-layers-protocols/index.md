@@ -18,10 +18,10 @@ draft: false
 :::
 
 ## 02.1 목표
-![assets/packet_encapsulation.png](./assets/packet_encapsulation.png)
+![assets/packet_encapsulation.png](./assets/packet_encapsulation.webp)
 > 그림 02-1. OSI 7계층과 TCP/IP 매핑
 
-![assets/osi_tcpip.png](./assets/osi_tcpip.png)
+![assets/osi_tcpip.png](./assets/osi_tcpip.webp)
 > 그림 02-2. 캡슐화 과정
 
 - OSI 7계층과 TCP/IP 모델의 차이를 정확히 설명한다.

@@ -17,13 +17,13 @@ draft: false
 :::
 
 ## 09.1 목표
-![assets/firewall_rules.png](./assets/firewall_rules.png)
+![assets/firewall_rules.png](./assets/firewall_rules.webp)
 > 그림 09-1. 방화벽 룰 예시
 
-![assets/analogy_firewall.png](./assets/analogy_firewall.png)
+![assets/analogy_firewall.png](./assets/analogy_firewall.webp)
 > 그림 09-2. 방화벽 비유
 
-![assets/nat_flow.png](./assets/nat_flow.png)
+![assets/nat_flow.png](./assets/nat_flow.webp)
 > 그림 09-3. NAT 변환 개념
 
 - 방화벽 정책을 읽고 이해한다.

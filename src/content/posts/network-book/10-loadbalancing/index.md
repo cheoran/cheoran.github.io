@@ -18,10 +18,10 @@ draft: false
 :::
 
 ## 10.1 목표
-![assets/lb_algorithms.png](./assets/lb_algorithms.png)
+![assets/lb_algorithms.png](./assets/lb_algorithms.webp)
 > 그림 10-1. 로드밸런싱 알고리즘 예시
 
-![assets/load_balancer.png](./assets/load_balancer.png)
+![assets/load_balancer.png](./assets/load_balancer.webp)
 > 그림 10-2. 로드밸런서 구조
 
 - 로드밸런서의 역할을 이해한다.

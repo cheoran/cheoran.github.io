@@ -19,7 +19,7 @@ draft: false
 :::
 
 ## 12.1 목표
-![assets/troubleshoot_flow.png](./assets/troubleshoot_flow.png)
+![assets/troubleshoot_flow.png](./assets/troubleshoot_flow.webp)
 > 그림 12-1. 문제 진단 흐름
 
 - 계층별 진단 흐름을 익힌다.

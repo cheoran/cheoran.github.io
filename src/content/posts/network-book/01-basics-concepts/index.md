@@ -22,7 +22,7 @@ draft: false
 ## 01.1 네트워크란 무엇인가
 네트워크는 **여러 장치가 데이터를 주고받기 위한 연결과 규칙의 집합**이다.
 
-![assets/network_overview.png](./assets/network_overview.png)
+![assets/network_overview.png](./assets/network_overview.webp)
 > 그림 01-1. 네트워크 기본 구성 요소
 
 ### 네트워크의 3가지 목적
@@ -43,14 +43,14 @@ draft: false
 - 초당 전송 가능한 **최대 데이터량**
 - 비유: 도로의 차선 수
 
-![assets/analogy_bandwidth.png](./assets/analogy_bandwidth.png)
+![assets/analogy_bandwidth.png](./assets/analogy_bandwidth.webp)
 > 그림 01-2. 대역폭 비유
 
 ### 2.2 지연(Latency)
 - 패킷이 목적지까지 가는 시간(왕복: RTT)
 - 비유: 도로의 길이
 
-![assets/analogy_latency.png](./assets/analogy_latency.png)
+![assets/analogy_latency.png](./assets/analogy_latency.webp)
 > 그림 01-3. 지연 비유
 
 ### 2.3 손실(Loss)

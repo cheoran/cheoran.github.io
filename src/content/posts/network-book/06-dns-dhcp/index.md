@@ -19,7 +19,7 @@ draft: false
 :::
 
 ## 06.1 목표
-![assets/dns_flow.png](./assets/dns_flow.png)
+![assets/dns_flow.png](./assets/dns_flow.webp)
 > 그림 06-1. DNS 조회 흐름
 
 - DNS 흐름을 단계별로 설명한다.

@@ -18,10 +18,10 @@ draft: false
 :::
 
 ## 03.1 목표
-![assets/ip_header.png](./assets/ip_header.png)
+![assets/ip_header.png](./assets/ip_header.webp)
 > 그림 03-1. /24를 /26으로 분할
 
-![assets/subnet_blocks.png](./assets/subnet_blocks.png)
+![assets/subnet_blocks.png](./assets/subnet_blocks.webp)
 > 그림 03-2. IPv4 헤더 요약
 
 - IPv4 주소 구조를 정확히 이해한다.

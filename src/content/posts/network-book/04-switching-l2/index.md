@@ -19,7 +19,7 @@ draft: false
 :::
 
 ## 04.1 목표
-![assets/switch_arp.png](./assets/switch_arp.png)
+![assets/switch_arp.png](./assets/switch_arp.webp)
 > 그림 04-1. 스위치와 ARP 브로드캐스트
 
 - MAC 주소와 ARP 역할을 이해한다.

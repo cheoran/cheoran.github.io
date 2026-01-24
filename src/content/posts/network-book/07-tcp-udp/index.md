@@ -19,19 +19,19 @@ draft: false
 :::
 
 ## 07.1 목표
-![assets/udp_header.png](./assets/udp_header.png)
+![assets/udp_header.png](./assets/udp_header.webp)
 > 그림 07-1. UDP 헤더 요약
 
-![assets/tcp_header.png](./assets/tcp_header.png)
+![assets/tcp_header.png](./assets/tcp_header.webp)
 > 그림 07-2. TCP 헤더 요약
 
-![assets/header_annotations.png](./assets/header_annotations.png)
+![assets/header_annotations.png](./assets/header_annotations.webp)
 > 그림 07-3. 헤더 필드 주석 예시
 
-![assets/tcp_options.png](./assets/tcp_options.png)
+![assets/tcp_options.png](./assets/tcp_options.webp)
 > 그림 07-4. TCP 옵션 대표 예시
 
-![assets/tcp_handshake.png](./assets/tcp_handshake.png)
+![assets/tcp_handshake.png](./assets/tcp_handshake.webp)
 > 그림 07-5. TCP 3-way handshake
 
 - TCP/UDP 차이를 정확히 설명한다.

@@ -19,7 +19,7 @@ draft: false
 :::
 
 ## 05.1 목표
-![assets/routing_basic.png](./assets/routing_basic.png)
+![assets/routing_basic.png](./assets/routing_basic.webp)
 > 그림 05-1. 라우팅 기본 구조
 
 - 라우터가 서로 다른 네트워크를 연결하는 원리를 이해한다.
