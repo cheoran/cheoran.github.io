@@ -409,6 +409,17 @@ const setup = () => {
 		// Remove the delay for the first time page load
 		document.documentElement.style.setProperty('--content-delay', '0ms')
 
+		// Smoothly reset progress bar if a new navigation starts mid-progress
+		const progressBar = document.querySelector('.swup-progress-bar') as HTMLElement | null
+		if (progressBar) {
+			progressBar.style.setProperty('--progress', '0')
+			progressBar.style.setProperty('transition', 'none')
+			progressBar.style.opacity = '1'
+			requestAnimationFrame(() => {
+				progressBar.style.removeProperty('transition')
+			})
+		}
+
 		// prevent elements from overlapping the navbar
 		if (!bannerEnabled) {
 			return
