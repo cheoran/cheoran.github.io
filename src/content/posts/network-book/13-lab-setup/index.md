@@ -10,7 +10,7 @@ draft: false
 # 13 실습 환경 구축 (VirtualBox 상세)
 
 ## 13.1 목표
-![assets/lab_topology.svg](./assets/lab_topology.svg)
+![assets/lab_topology.png](./assets/lab_topology.png)
 > 그림 13-1. 실습 토폴로지
 
 - VM 3대를 만들고 네트워크 분리를 구성한다.

@@ -19,8 +19,8 @@ draft: false
 :::
 
 ## 08.1 목표
-![assets/http_tls_flow.svg](./assets/http_tls_flow.svg)
-> 그림 08-1. HTTP와 TLS 흐름
+![assets/http_tls_flow.png](./assets/http_tls_flow.png)
+> 그림 08-1. HTTPS(HTTP over TLS) 통신 흐름
 
 - HTTP 요청/응답 구조를 설명한다.
 - TLS 핸드셰이크 흐름을 이해한다.

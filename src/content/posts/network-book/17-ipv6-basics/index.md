@@ -19,7 +19,7 @@ draft: false
 :::
 
 ## 17.1 IPv6 주소 구조
-![assets/ipv6_header.svg](./assets/ipv6_header.svg)
+![assets/ipv6_header.png](./assets/ipv6_header.png)
 > 그림 17-1. IPv6 헤더 구조
 
 IPv6는 128비트 주소 체계이며 16비트씩 8블록으로 표현한다.

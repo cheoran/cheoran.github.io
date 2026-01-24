@@ -17,7 +17,7 @@ draft: false
 :::
 
 ## 11.1 목표
-![assets/vpn_tunnel.svg](./assets/vpn_tunnel.svg)
+![assets/vpn_tunnel.png](./assets/vpn_tunnel.png)
 > 그림 11-1. VPN 터널 개념
 
 - VPN과 터널링을 이해한다.

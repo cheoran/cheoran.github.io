@@ -17,14 +17,14 @@ draft: false
 :::
 
 ## 09.1 목표
-![assets/firewall_rules.svg](./assets/firewall_rules.svg)
-> 그림 09-1. NAT 변환 개념
+![assets/firewall_rules.png](./assets/firewall_rules.png)
+> 그림 09-1. 방화벽 룰 예시
 
-![assets/analogy_firewall.svg](./assets/analogy_firewall.svg)
-> 그림 09-2. 방화벽 룰 예시
+![assets/analogy_firewall.png](./assets/analogy_firewall.png)
+> 그림 09-2. 방화벽 비유
 
-![assets/nat_flow.svg](./assets/nat_flow.svg)
-> 그림 09-3. 방화벽 비유
+![assets/nat_flow.png](./assets/nat_flow.png)
+> 그림 09-3. NAT 변환 개념
 
 - 방화벽 정책을 읽고 이해한다.
 - NAT의 종류(SNAT/DNAT)를 구분한다.
