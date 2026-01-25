@@ -41,9 +41,7 @@ export default defineConfig({
 			// when the Tailwind class `transition-all` is used
 			containers: ["main", "#toc"],
 			smoothScrolling: true,
-			progress: {
-				delay: 0,
-			},
+			progress: false,
 			cache: true,
 			preload: true,
 			accessibility: true,
