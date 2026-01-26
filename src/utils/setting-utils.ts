@@ -45,6 +45,9 @@ export function setChroma(chroma: number): void {
 		return;
 	}
 	r.style.setProperty("--chroma", String(chroma));
+	r.style.setProperty("--badge-chroma", String(0.1 * chroma));
+	r.style.setProperty("--badge-bg-chroma", String(0.035 * chroma));
+	r.classList.toggle("mono", chroma === 0);
 }
 
 export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
