@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="01 네트워크 기초 개념">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="10 방화벽과 NAT ">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#ef4444" stop-opacity="0.10"/>
@@ -14,7 +14,7 @@
   <rect x="48" y="48" width="1104" height="534" rx="28" fill="url(#bg)" stroke="#d8dee6"/>
   <rect x="96" y="120" width="420" height="10" rx="6" fill="url(#accent)"/>
   <g font-family="Pretendard, Apple SD Gothic Neo, Noto Sans KR, Segoe UI, sans-serif" fill="#0b1324">
-    <text x="96" y="220" font-size="44" font-weight="700">01 네트워크 기초 개념</text>
+    <text x="96" y="220" font-size="44" font-weight="700">10 방화벽과 NAT </text>
     <text x="96" y="310" font-size="20" fill="#5b6472">핵심 개념, 실습, 점검</text>
   </g>
   <g fill="#f59e0b" opacity="0.12">
