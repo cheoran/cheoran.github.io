@@ -93,16 +93,32 @@ vm3> sudo ip addr add 10.0.2.1/24 dev enp0s8
 
 ---
 
-## 14.6 체크리스트
+## 14.6 라우팅 활성화
+
+### IP 포워딩 켜기
+
+```shellsession
+vm3> sudo sysctl -w net.ipv4.ip_forward=1
+```
+
+### 영구 적용
+
+```shellsession
+vm3> echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.conf
+```
+
+---
+
+## 14.7 체크리스트
 
 - VM 3대 생성
 - VM3 NIC 2개 설정
 - IP 설정 완료
-- ping 테스트 성공
+- VM1 ↔ VM3, VM2 ↔ VM3 ping 성공
 
 ---
 
-## 14.7 OS별 VirtualBox 설치 요약
+## 14.8 OS별 VirtualBox 설치 요약
 
 ### macOS
 
@@ -123,8 +139,17 @@ vm3> sudo ip addr add 10.0.2.1/24 dev enp0s8
 
 ---
 
-## 14.8 실습 전 체크
+## 14.9 실습 전 체크
 
 - VM 간 ping 가능?
 - 방화벽이 ICMP를 막고 있지 않은가?
 - 네트워크 어댑터가 Internal Network인지 재확인
+
+---
+
+## 14.10 문제 + 모범답안
+
+1. **문제**: VM3에 NIC가 2개 필요한 이유는?
+   **답**: 서로 다른 두 네트워크를 라우팅해야 하기 때문이다.
+2. **문제**: 라우팅이 되지 않을 때 가장 먼저 확인할 항목은?
+   **답**: IP 포워딩 설정과 라우팅 테이블.

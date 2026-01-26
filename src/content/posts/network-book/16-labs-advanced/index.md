@@ -1,7 +1,7 @@
 ---
 title: "16 심화 실습 (상세)"
 published: 2026-01-16
-description: "`` HTTP/1.1 200 OK Server: SimpleHTTP/0.6 Python/3.x ``"
+description: "심화 실습: 로드밸런싱, WireGuard, 장애 대응"
 image: "assets/cover.svg"
 showCover: false
 tags: ["network", "학습"]
@@ -34,6 +34,11 @@ draft: false
 2. Nginx upstream 추가
 3. 백엔드 하나 종료 후 응답 확인
 
+### 검증 포인트
+
+- 요청이 살아있는 백엔드로만 라우팅되는가
+- 헬스체크 실패 시 자동 제외되는가
+
 ### 예상 출력(요약)
 
 ```
@@ -49,6 +54,12 @@ Server: SimpleHTTP/0.6 Python/3.x
 
 - AllowedIPs에 서브넷 추가
 - 라우팅 기반 터널 통신
+
+### 단계
+
+1. AllowedIPs에 대상 서브넷 추가
+2. 라우팅 테이블 확인
+3. 원격 서브넷 ping/trace 테스트
 
 ### 예상 출력(요약)
 
@@ -81,6 +92,11 @@ vm1> sudo ip route del 10.0.2.0/24
 vm1> sudo ip route add 10.0.2.0/24 via 10.0.1.1
 ```
 
+### 검증 포인트
+
+- 실패 시 경로가 사라졌는지 확인
+- 복구 후 정상 통신되는지 확인
+
 ### 예상 출력(요약)
 
 ```
@@ -98,3 +114,11 @@ connect: Network is unreachable
 2. 문제: WireGuard 연결은 되는데 특정 서브넷만 안 된다. 원인은?
 
 - 답: AllowedIPs 또는 라우팅 누락.
+
+---
+
+## 16.5 체크리스트
+
+- 로드밸런서 헬스체크 동작 확인
+- WireGuard 서브넷 라우팅 확인
+- 장애 시나리오 복구 가능

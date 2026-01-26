@@ -19,6 +19,8 @@ draft: false
 - DNS/TLS 흐름 설명 가능
 - tcpdump로 핸드셰이크 확인 가능
 - 방화벽 규칙 작성 가능
+- IPv6 주소 구조와 축약 규칙 이해
+- WireGuard 기본 설정 이해
 
 ## 17.2 퀴즈
 
@@ -29,6 +31,9 @@ draft: false
 5. L4와 L7 로드밸런서 차이는?
 6. DNS에서 CNAME의 역할은?
 7. DHCP DORA 절차를 순서대로 쓰시오.
+8. IPv6 주소에서 `::`는 몇 번 사용할 수 있는가?
+9. `fe80::/10`의 용도는?
+10. WireGuard에서 AllowedIPs의 역할은?
 
 ---
 
@@ -41,6 +46,9 @@ draft: false
 5. L4/L7 차이: L4는 포트 기반, L7은 HTTP 기반
 6. CNAME 역할: 별칭 제공
 7. DHCP DORA: Discover → Offer → Request → Ack
+8. 한 번만 사용 가능
+9. 링크 로컬 주소 범위
+10. 터널을 통해 허용할 대상 IP 범위를 지정
 
 ---
 
@@ -76,3 +84,6 @@ draft: false
 | 11   | L4/L7 차이 설명, 헬스체크 필요성 이해                                     |
 | 12   | VPN 터널 개념 설명, WireGuard 구성 이해                                   |
 | 13   | ping/traceroute 사용, tcpdump 기본 분석                                   |
+| 14   | 실습 환경 구성, 라우팅/포워딩 확인                                        |
+| 15   | 핵심 실습 완료, 기본 장애 진단                                            |
+| 16   | 심화 실습 완료, 시나리오 복구 가능                                        |

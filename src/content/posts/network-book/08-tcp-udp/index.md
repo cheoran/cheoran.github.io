@@ -1,5 +1,5 @@
 ---
-title: "08 TCP와 UDP "
+title: "08 TCP와 UDP"
 published: 2026-01-08
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
@@ -20,6 +20,11 @@ draft: false
   :::
 
 ---
+
+## 08.1 TCP/UDP 개요
+
+- TCP: 신뢰성 중심, 연결 지향
+- UDP: 지연 최소화, 비연결
 
 ## 08.2 TCP 특징
 

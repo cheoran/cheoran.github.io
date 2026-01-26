@@ -1,5 +1,5 @@
 ---
-title: "10 방화벽과 NAT "
+title: "10 방화벽과 NAT"
 published: 2026-01-10
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
@@ -207,7 +207,7 @@ lin> ss -lntp | head -n 5
 
 ---
 
-## 9.x NAT 심화: PAT(포트 주소 변환)
+## 10.13 NAT 심화: PAT(포트 주소 변환)
 
 PAT는 여러 사설 IP를 **하나의 공인 IP + 포트**로 변환한다.
 

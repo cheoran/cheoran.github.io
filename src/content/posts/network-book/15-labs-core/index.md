@@ -27,17 +27,19 @@ draft: false
 
 ### 단계
 
-1) VM1 IP 설정
+1) VM1/VM2를 같은 Internal Network(intnet1)로 설정
+
+2) VM1 IP 설정
 ```shellsession
 vm1> sudo ip addr add 10.0.1.10/24 dev enp0s3
 ```
 
-2) VM2 IP 설정
+3) VM2 IP 설정
 ```shellsession
 vm2> sudo ip addr add 10.0.1.20/24 dev enp0s3
 ```
 
-3) ping 테스트
+4) ping 테스트
 ```shellsession
 vm1> ping -c 3 10.0.1.20
 ```
@@ -57,24 +59,29 @@ vm1> ping -c 3 10.0.1.20
 
 ### 단계
 
-1) VM3 라우터 설정
+1) VM2를 Internal Network(intnet2)로 변경하고 IP 재설정
+```shellsession
+vm2> sudo ip addr add 10.0.2.20/24 dev enp0s3
+```
+
+2) VM3 라우터 설정
 ```shellsession
 vm3> sudo sysctl -w net.ipv4.ip_forward=1
 vm3> sudo ip addr add 10.0.1.1/24 dev enp0s3
 vm3> sudo ip addr add 10.0.2.1/24 dev enp0s8
 ```
 
-2) VM1 라우트 추가
+3) VM1 라우트 추가
 ```shellsession
 vm1> sudo ip route add 10.0.2.0/24 via 10.0.1.1
 ```
 
-3) VM2 라우트 추가
+4) VM2 라우트 추가
 ```shellsession
 vm2> sudo ip route add 10.0.1.0/24 via 10.0.2.1
 ```
 
-4) ping 테스트
+5) ping 테스트
 ```shellsession
 vm1> ping -c 3 10.0.2.20
 ```
@@ -104,15 +111,25 @@ vm2> sudo apt install -y dnsmasq
 vm2> echo "10.0.2.20 myapp.local" | sudo tee -a /etc/hosts
 ```
 
-3) VM1 DNS 서버 지정
+3) dnsmasq 재시작
+```shellsession
+vm2> sudo systemctl restart dnsmasq
+```
+
+4) VM1 DNS 서버 지정
 ```shellsession
 vm1> echo "nameserver 10.0.2.20" | sudo tee /etc/resolv.conf
 ```
 
-4) 확인
+5) 확인
 ```shellsession
 vm1> dig myapp.local
 ```
+
+:::note[/etc/resolv.conf 주의]
+systemd-resolved 환경에서는 /etc/resolv.conf가 자동으로 덮어써질 수 있다.
+필요하면 `resolvectl dns`로 설정한다.
+:::
 
 ### 예상 출력(요약)
 ```

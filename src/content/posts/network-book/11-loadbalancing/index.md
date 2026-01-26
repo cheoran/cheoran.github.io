@@ -1,5 +1,5 @@
 ---
-title: "11 로드밸런싱 "
+title: "11 로드밸런싱"
 published: 2026-01-11
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"

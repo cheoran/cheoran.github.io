@@ -1,5 +1,5 @@
 ---
-title: "09 HTTP와 TLS "
+title: "09 HTTP와 TLS"
 published: 2026-01-09
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
@@ -166,7 +166,7 @@ lin> openssl s_client -connect example.com:443 -servername example.com
 
 ---
 
-## 8.x TLS/PKI 기본 구조
+## 09.12 TLS/PKI 기본 구조
 
 TLS는 **PKI(공개키 기반 구조)** 위에서 동작한다.
 
@@ -181,7 +181,7 @@ TLS는 **PKI(공개키 기반 구조)** 위에서 동작한다.
 - 중간자 공격 방지
 - 서버 신원 보장
 
-## 실무 포인트
+## 09.13 실무 포인트
 
 - 인증서 만료일 관리 필수
 - SAN(Subject Alternative Name) 확인 중요

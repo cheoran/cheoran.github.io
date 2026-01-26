@@ -1,5 +1,5 @@
 ---
-title: "05 L2 스위칭 "
+title: "05 L2 스위칭"
 published: 2026-01-05
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"

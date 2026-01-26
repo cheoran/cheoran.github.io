@@ -1,5 +1,5 @@
 ---
-title: "13 트러블슈팅 도구 "
+title: "13 트러블슈팅 도구"
 published: 2026-01-13
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
@@ -125,7 +125,7 @@ mac> traceroute example.com
 
 ---
 
-## 추가 장애 시나리오 (실제 로그 기반)
+## 13.10 추가 장애 시나리오 (실제 로그 기반)
 
 ### 시나리오 1: DNS는 되는데 접속이 안 됨
 
