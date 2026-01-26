@@ -20,7 +20,7 @@
     }
 
     a:not(.no-styling) {
-        @apply relative bg-none link font-medium text-[var(--primary)]
+        @apply relative bg-none font-medium text-[var(--primary)]
         underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4;
         box-decoration-break: clone;
         -webkit-box-decoration-break: clone;
@@ -118,4 +118,13 @@
         margin: 1em 0;
     }
     
+}
+
+:root.mono .custom-md .copy-btn {
+    background: oklch(0.32 0 0) !important;
+    color: oklch(0.78 0 0) !important;
+}
+
+:root.mono .custom-md .copy-btn .copy-btn-icon {
+    @apply fill-white/80;
 }

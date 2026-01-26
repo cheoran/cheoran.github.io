@@ -23,6 +23,7 @@ import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
+import { rehypeImgLazy } from "./src/plugins/rehype-img-lazy.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,6 +41,7 @@ export default defineConfig({
 			// when the Tailwind class `transition-all` is used
 			containers: ["main", "#toc"],
 			smoothScrolling: true,
+			progress: false,
 			cache: true,
 			preload: true,
 			accessibility: true,
@@ -151,6 +153,7 @@ export default defineConfig({
 					},
 				},
 			],
+			rehypeImgLazy,
 		],
 	},
 	vite: {

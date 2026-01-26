@@ -7,13 +7,27 @@ interface Props {
 	class?: string;
 	alt?: string;
 	position?: string;
+	fit?: "cover" | "contain";
 	basePath?: string;
+	loading?: "lazy" | "eager";
+	decoding?: "async" | "sync" | "auto";
+	fetchpriority?: "high" | "low" | "auto";
 }
 
 import { Image } from "astro:assets";
 import { url } from "../../utils/url-utils";
 
-const { id, src, alt, position = "center", basePath = "/" } = Astro.props;
+const {
+	id,
+	src,
+	alt,
+	position = "center",
+	fit = "cover",
+	basePath = "/",
+	loading = "lazy",
+	decoding = "async",
+	fetchpriority = "auto",
+} = Astro.props;
 const className = Astro.props.class;
 
 const isLocal = !(
@@ -23,32 +37,63 @@ const isLocal = !(
 	src.startsWith("data:")
 );
 const isPublic = src.startsWith("/");
+const isLocalSvg = isLocal && src.toLowerCase().endsWith(".svg");
 
 // TODO temporary workaround for images dynamic import
 // https://github.com/withastro/astro/issues/3373
 // biome-ignore lint/suspicious/noImplicitAnyLet: <check later>
 let img;
 if (isLocal) {
-	const files = import.meta.glob<ImageMetadata>("../../**", {
-		import: "default",
-	});
 	let normalizedPath = path
 		.normalize(path.join("../../", basePath, src))
 		.replace(/\\/g, "/");
-	const file = files[normalizedPath];
-	if (!file) {
-		console.error(
-			`\n[ERROR] Image file not found: ${normalizedPath.replace("../../", "src/")}`,
-		);
+	if (isLocalSvg) {
+		const files = import.meta.glob<string>("../../**/*.svg", {
+			as: "url",
+		});
+		const file = files[normalizedPath];
+		if (!file) {
+			console.error(
+				`\n[ERROR] Image file not found: ${normalizedPath.replace("../../", "src/")}`,
+			);
+		} else {
+			img = await file();
+		}
+	} else {
+		const files = import.meta.glob<ImageMetadata>("../../**", {
+			import: "default",
+		});
+		const file = files[normalizedPath];
+		if (!file) {
+			console.error(
+				`\n[ERROR] Image file not found: ${normalizedPath.replace("../../", "src/")}`,
+			);
+		} else {
+			img = await file();
+		}
 	}
-	img = await file();
 }
 
-const imageClass = "w-full h-full object-cover";
+const imageClass =
+	fit === "contain" ? "w-full h-full object-contain" : "w-full h-full object-cover";
 const imageStyle = `object-position: ${position}`;
 ---
 <div id={id} class:list={[className, 'overflow-hidden relative']}>
     <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>
-    {isLocal && img && <Image src={img} alt={alt || ""} class={imageClass} style={imageStyle}/>}
-    {!isLocal && <img src={isPublic ? url(src) : src} alt={alt || ""} class={imageClass} style={imageStyle}/>}
+    {isLocalSvg && img && <img src={img as string} alt={alt || ""} class={imageClass} style={imageStyle} loading={loading} decoding={decoding} fetchpriority={fetchpriority}/>}
+    {isLocal && !isLocalSvg && img && (
+        <Image
+            src={img as ImageMetadata}
+            alt={alt || ""}
+            class={imageClass}
+            style={imageStyle}
+            width={100}
+            height={100}
+            format="webp"
+            loading={loading}
+            decoding={decoding}
+            fetchpriority={fetchpriority}
+        />
+    )}
+    {!isLocal && <img src={isPublic ? url(src) : src} alt={alt || ""} class={imageClass} style={imageStyle} loading={loading} decoding={decoding} fetchpriority={fetchpriority}/>}
 </div>
