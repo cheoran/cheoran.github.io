@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="14 Containers &amp; VMs">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#16a34a" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.18"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="48" y="48" width="1104" height="534" rx="28" fill="url(#bg)" stroke="#e2e8f0"/>
+  <rect x="96" y="120" width="420" height="10" rx="6" fill="url(#accent)"/>
+  <g font-family="Inter, Pretendard, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Segoe UI', sans-serif" fill="#0f172a">
+    <text x="96" y="220" font-size="44" font-weight="700">14 Containers &amp; VMs</text>
+    <text x="96" y="310" font-size="22" fill="#475569">Linux Book · 핵심 개념 · 실습 · 점검</text>
+  </g>
+  <g fill="none" stroke="#e2e8f0" stroke-width="2">
+    <path d="M120 470 H520"/>
+    <path d="M120 510 H420"/>
+  </g>
+  <g fill="#22c55e" opacity="0.16">
+    <circle cx="990" cy="220" r="90"/>
+    <circle cx="1080" cy="420" r="60"/>
+    <rect x="760" y="360" width="210" height="130" rx="26"/>
+  </g>
+</svg>
