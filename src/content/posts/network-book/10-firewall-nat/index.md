@@ -71,14 +71,18 @@ draft: false
 
 ### SNAT(Source Network Address Translation)
 
-- 내부 → 외부
-
-### DNAT(Destination Network Address Translation)
-
-- 외부 → 내부 (포트 포워딩)
+- 내부 → 외부 (출발지 주소를 공인 IP로 변경)
 
 ```text
 [10.0.0.5] --(SNAT)--> [1.2.3.4]
+```
+
+### DNAT(Destination Network Address Translation)
+
+- 외부 → 내부 (목적지 주소/포트를 내부로 변경 = 포트포워딩)
+
+```text
+[1.2.3.4:8080] --(DNAT)--> [10.0.0.5:80]
 ```
 
 ---
