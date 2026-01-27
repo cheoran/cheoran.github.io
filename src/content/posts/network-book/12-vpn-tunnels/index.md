@@ -21,7 +21,7 @@ draft: false
 
 ---
 
-## 12.1 VPN 개념
+## 12.1 VPN(Virtual Private Network) 개념
 
 VPN은 **암호화된 터널**을 통해 안전한 통신을 제공한다.
 

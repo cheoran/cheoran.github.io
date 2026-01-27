@@ -23,11 +23,11 @@ draft: false
 
 ## 07.1 DNS 구조
 
-DNS는 **이름을 IP로 바꾸는 분산 시스템**이다.
+DNS(Domain Name System)는 **이름을 IP로 바꾸는 분산 시스템**이다.
 
 ### DNS는 왜 필요한가
 
-- 사람은 이름(example.com)을 기억하고, 컴퓨터는 IP(93.184.216.34)를 사용한다.
+- 사람은 이름(example.com)을 기억하고, 컴퓨터는 IP를 사용한다.
 - DNS는 그 변환을 담당한다.
 
 ### 계층 구조
@@ -51,7 +51,7 @@ DNS는 **이름을 IP로 바꾸는 분산 시스템**이다.
 
 ## 07.2 DNS 레코드
 
-- **A/AAAA**: 도메인 → IP(IPv4/IPv6)
+- **A/AAAA**: 도메인 → IP/IPv6)
 - **CNAME**: 도메인 별칭(다른 도메인으로 연결)
 - **MX**: 메일을 받을 서버
 - **TXT**: 정책/검증용 텍스트 정보
@@ -59,7 +59,7 @@ DNS는 **이름을 IP로 바꾸는 분산 시스템**이다.
 
 ---
 
-## 07.3 DHCP
+## 07.3 DHCP(Dynamic Host Configuration Protocol)
 
 자동 IP 할당 프로토콜
 
@@ -68,7 +68,7 @@ DNS는 **이름을 IP로 바꾸는 분산 시스템**이다.
 - IP/게이트웨이/DNS를 자동으로 나눠준다
 - 없으면 모든 PC에 수동 입력해야 한다
 
-### DORA 절차
+### DORA(Discover, Offer, Request, Acknowledge) 절차
 
 1. Discover
 2. Offer

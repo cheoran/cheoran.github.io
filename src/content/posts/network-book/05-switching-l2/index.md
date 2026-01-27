@@ -21,7 +21,7 @@ draft: false
 
 ---
 
-## 05.1 MAC 주소
+## 05.1 MAC(Media Access Control) 주소
 
 - 48비트 고유 식별자
 - 같은 네트워크 안에서 장치를 구분
@@ -50,7 +50,7 @@ draft: false
 
 ---
 
-## 05.3 ARP (IP → MAC)
+## 05.3 ARP(Address Resolution Protocol)
 
 IP 주소만 알고 있을 때 MAC 주소를 얻는 프로토콜
 

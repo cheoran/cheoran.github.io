@@ -20,7 +20,7 @@ showCover: false
 
 ---
 
-## 02.1 OSI 7계층과 TCP/IP
+## 02.1 OSI(Open Systems Interconnection) 7계층과 TCP/IP(Transmission Control Protocol/Internet Protocol)
 
 ### OSI 7계층 (교육용 개념 모델)
 
@@ -32,7 +32,7 @@ showCover: false
 6. 표현(Presentation)
 7. 응용(Application)
 
-### TCP/IP (실제 인터넷 모델)
+### TCP/IP
 
 1. 네트워크 인터페이스
 2. 인터넷
@@ -258,7 +258,7 @@ lin> nc -vz example.com 443
 예를 들어 MTU가 1500바이트일 때, TCP/IP 헤더(최소 40바이트)를 제외하면 실제 데이터는 약 1460바이트만 실을 수 있다.
 
 :::note[MTU 설명]
-**MTU(Maximum Transmission Unit)**: 한 번에 전송 가능한 최대 크기.
+**MTU**: 한 번에 전송 가능한 최대 크기.
 이더넷 기준 보통 **1500B**이며, IP/TCP 헤더 때문에 앱 데이터는 대략 **1460B** 수준이 된다(옵션 없을 때).
 :::
 

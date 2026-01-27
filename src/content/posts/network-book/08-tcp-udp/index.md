@@ -23,8 +23,8 @@ draft: false
 
 ## 08.1 TCP/UDP 개요
 
-- TCP: 신뢰성 중심, 연결 지향
-- UDP: 지연 최소화, 비연결
+- TCP(Transmission Control Protocol): 신뢰성 중심, 연결 지향
+- UDP(User Datagram Protocol): 지연 최소화, 비연결
 
 ## 08.2 TCP 특징
 

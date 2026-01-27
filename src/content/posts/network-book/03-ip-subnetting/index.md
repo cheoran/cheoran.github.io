@@ -44,14 +44,14 @@ IPv4는 32비트 주소이며, 8비트씩 4구간으로 표현한다.
 
 서브넷과 직접 연결되는 건 아니지만, 네트워크 트러블슈팅에서 자주 마주친다.
 
-- **TTL**: 패킷이 지나갈 수 있는 최대 홉 수. 0이 되면 폐기된다.
-- **DF/MF (단편화)**: MTU보다 큰 패킷이 단편화 가능한지 여부.
-- **Total Length**: 패킷 전체 길이. MTU/단편화 이슈 판단에 유용.
+- **TTL(Time To Live)**: 패킷이 지나갈 수 있는 최대 홉 수. 0이 되면 폐기된다.
+- **DF/MF (단편화)**: MTU(Maximum Transmission Unit)보다 큰 패킷이 단편화 가능한지 여부.
+- **Total Length**: 패킷 전체 길이. MTU(Maximum Transmission Unit)/단편화 이슈 판단에 유용.
 - **Protocol**: 상위 프로토콜 식별 (TCP/UDP/ICMP 등).
 
 ---
 
-## 03.2 CIDR 표기
+## 03.2 CIDR(Classless Inter-Domain Routing) 표기
 
 - 예: 10.0.0.0/24
 - /24는 네트워크 비트 24개

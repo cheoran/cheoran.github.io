@@ -20,7 +20,7 @@ draft: false
 
 ---
 
-## 09.1 HTTP 구조
+## 09.1 HTTP(Hypertext Transfer Protocol) 구조
 
 :::note[HTTP]
 
@@ -47,7 +47,7 @@ Content-Type: text/html
 
 ---
 
-## 09.2 TLS (HTTPS)
+## 09.2 TLS(Transport Layer Security)
 
 :::note[TLS]
 
@@ -67,7 +67,7 @@ Content-Type: text/html
 
 ![assets/http_tls_flow.png](./assets/http_tls_flow.webp)
 
-> 그림 09-1. HTTPS(HTTP over TLS) 통신 흐름
+> 그림 09-1. HTTPS 통신 흐름
 
 ---
 

@@ -56,7 +56,7 @@ draft: false
 
 ---
 
-## 10.2 NAT
+## 10.2 NAT(Network Address Translation)
 
 사설 IP를 공인 IP로 변환하는 기술
 
@@ -69,11 +69,11 @@ draft: false
 
 > 그림 10-3. NAT 변환 개념
 
-### SNAT
+### SNAT(Source Network Address Translation)
 
 - 내부 → 외부
 
-### DNAT
+### DNAT(Destination Network Address Translation)
 
 - 외부 → 내부 (포트 포워딩)
 
@@ -154,7 +154,7 @@ vm2> sudo iptables -F
 
 ### 상황: 외부에서 내부 서비스 접속 필요
 
-- DNAT(포트 포워딩) 설정
+- DNAT 설정
 
 ---
 

@@ -56,12 +56,12 @@ draft: false
 
 :::note[OSPF / BGP 한 번에 이해]
 
-- **OSPF (Open Shortest Path First)**
+- **OSPF(Open Shortest Path First)**
   - **내부망(같은 조직/회사)**에서 쓰는 대표적인 **IGP(내부 라우팅 프로토콜)**
   - 라우터들이 서로 링크 상태를 공유하고, **최단 경로(비용/Cost)** 기준으로 라우팅 테이블을 자동 구성
   - 특징: 수렴이 빠르고, **한 회사/한 데이터센터/VPC 내부** 같은 “안쪽” 네트워크에 적합
 
-- **BGP (Border Gateway Protocol)**
+- **BGP(Border Gateway Protocol)**
   - **인터넷(서로 다른 조직/통신사/AS)** 사이에서 쓰는 대표적인 **EGP(외부 라우팅 프로토콜)**
   - “최단”보다는 **정책(Policy)** 기반: 어떤 경로를 선호/차단할지 운영자가 정할 수 있음
   - 특징: 인터넷의 길찾기 표준, 대규모에 강함(대신 설정/운영 난이도 높음)
