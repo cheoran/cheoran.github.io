@@ -36,6 +36,11 @@ const togglePanel = () => {
 	panel?.classList.toggle("float-panel-closed");
 };
 
+const closePanel = () => {
+	const panel = document.getElementById("search-panel");
+	panel?.classList.add("float-panel-closed");
+};
+
 const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 	const panel = document.getElementById("search-panel");
 	if (!panel || !isDesktop) return;
@@ -102,6 +107,14 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 };
 
 onMount(() => {
+	const handlePageChange = () => {
+		closePanel();
+	};
+
+	document.addEventListener("swup:contentReplaced", handlePageChange);
+	document.addEventListener("swup:pageView", handlePageChange);
+	document.addEventListener("astro:page-load", handlePageChange);
+
 	const initializeSearch = () => {
 		initialized = true;
 		pagefindLoaded =
@@ -138,6 +151,12 @@ onMount(() => {
 			}
 		}, 2000); // Adjust timeout as needed
 	}
+
+	return () => {
+		document.removeEventListener("swup:contentReplaced", handlePageChange);
+		document.removeEventListener("swup:pageView", handlePageChange);
+		document.removeEventListener("astro:page-load", handlePageChange);
+	};
 });
 
 $: if (initialized) {
