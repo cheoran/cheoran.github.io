@@ -53,6 +53,12 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 		result = [];
 		return;
 	}
+	const trimmedKeyword = keyword.trim();
+	if (!trimmedKeyword) {
+		setPanelVisibility(false, isDesktop);
+		result = [];
+		return;
+	}
 
 	if (!initialized) {
 		return;
@@ -74,6 +80,15 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 			searchResults = [];
 			console.error("Pagefind is not available in production environment.");
 		}
+
+		const normalizedQuery = trimmedKeyword.toLowerCase();
+		const stripTags = (text: string) => text.replace(/<[^>]*>/g, " ");
+		searchResults = searchResults.filter((item) => {
+			const title = item?.meta?.title ?? "";
+			const excerpt = stripTags(item?.excerpt ?? "");
+			const haystack = `${title} ${excerpt}`.toLowerCase();
+			return haystack.includes(normalizedQuery);
+		});
 
 		result = searchResults;
 		setPanelVisibility(result.length > 0, isDesktop);
