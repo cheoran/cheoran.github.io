@@ -19,13 +19,15 @@ showCover: false
 
 ## 한줄 요약
 
-스크립트와 cron으로 반복 작업을 자동화한다.
+반복 작업을 스크립트와 cron으로 자동화한다.
 
 ## 핵심 개념
 
-- 자동화는 재현성과 안정성의 핵심
-- 실패 처리와 로그가 중요
-- `set -euo pipefail`은 에러 시 종료/미정 변수 오류/파이프 오류 감지를 의미
+**자동화는 재현성**
+사람이 매번 수동으로 하면 실수가 생긴다. 스크립트로 고정하면 재현성과 안정성이 높아진다.
+
+**실패 처리와 로그**
+자동화는 “실패했을 때 멈추고 기록”하는 게 핵심이다. 그래서 `set -euo pipefail`이 중요하다.
 
 ---
 
@@ -39,7 +41,7 @@ showCover: false
 ## 실습 1: 간단한 백업 스크립트
 
 ```bash
-lin> cat <<'EOF' > /tmp/backup.sh
+lin> cat <<'EOF2' > /tmp/backup.sh
 #!/usr/bin/env bash
 set -euo pipefail
 src=/etc
@@ -47,7 +49,7 @@ dst=/tmp/backup-$(date +%F)
 mkdir -p "$dst"
 cp -a "$src" "$dst/"
 echo "backup done: $dst"
-EOF
+EOF2
 lin> chmod +x /tmp/backup.sh
 lin> /tmp/backup.sh
 ```
@@ -80,6 +82,8 @@ lin> crontab -l
 
 ## 13.3 Ansible 필수 패턴
 
+Ansible은 여러 서버를 동시에 관리할 때 쓰인다. “반복 작업을 코드로” 옮기는 대표 도구다.
+
 - 인벤토리: `inventory.ini`에 그룹/호스트 변수 정의, 클라우드면 동적 인벤토리(aws_ec2, azure_rm) 사용
 - 플레이북 뼈대
   ```yaml
@@ -102,6 +106,8 @@ lin> crontab -l
 
 ## 13.4 이미지 빌드: Packer + cloud-init
 
+이미지를 자동으로 만들면 서버 초기화가 표준화된다.
+
 - 베이스 이미지 자동화: Packer로 AMI/QCOW2 생성, Ansible/Shell 프로비저너 적용
 - cloud-init userdata 예: 패키지 설치 + 사용자 추가
   ```yaml
@@ -121,6 +127,8 @@ lin> crontab -l
 
 ## 13.5 SSM/원격 실행 대안
 
+SSH 대신 중앙 관리형 도구를 쓰면 보안과 운영이 쉬워진다.
+
 - 에이전트 기반: AWS SSM Agent, GCP OSConfig, Azure Arc → 방화벽/키 관리 부담 감소
 - 에이전트리스: Ansible + SSH 키 로테이션 자동화
 
@@ -128,6 +136,9 @@ lin> crontab -l
 
 ## 13.6 GitOps 흐름(베이직)
 
-- 선언적 상태: 인프라(IaC) + 애플리케이션 매니페스트를 git에 저장
+인프라/배포를 Git으로 관리하는 방식이다.
+
+- 선언적 상태: IaC + 애플리케이션 매니페스트를 git에 저장
 - 파이프라인: PR → 테스트 → 이미지 빌드/서명 → 매니페스트 업데이트 → Argo CD/Flux가 동기화
 - 이점: 변경 이력/롤백 용이, 수동 변경 금지 원칙 확립
+

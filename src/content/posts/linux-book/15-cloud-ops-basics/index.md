@@ -23,11 +23,20 @@ showCover: false
 
 ## 핵심 개념
 
-- systemd는 서비스뿐 아니라 스케줄링(timer)도 담당한다.
-- 배포판마다 패키지 도구와 보안 모델(SELinux 등)이 다르다.
-- SG/NACL은 클라우드 네트워크 경계, 호스트 방화벽은 OS 내부다.
-- 스토리지는 암호화와 마운트 옵션이 안정성에 큰 영향을 준다.
-- 성능 진단은 load/CPU steal/IO wait를 함께 본다.
+**systemd는 서비스뿐 아니라 스케줄링(timer)도 담당**
+cron 대신 systemd timer를 쓰는 경우가 많다.
+
+**배포판 차이**
+패키지 도구나 보안 모델(SELinux 등)이 다르므로, 서버를 옮길 때 주의해야 한다.
+
+**SG/NACL vs 호스트 방화벽**
+SG/NACL은 클라우드 네트워크 경계, 호스트 방화벽은 OS 내부다. 둘 다 맞춰야 안전하다.
+
+**스토리지 옵션 중요성**
+암호화/마운트 옵션이 성능과 안정성에 영향을 준다.
+
+**성능 진단 기본**
+load/CPU steal/IO wait 같은 지표를 함께 본다.
 
 ---
 
@@ -55,17 +64,19 @@ lin> systemctl status ssh
 ```
 
 ```bash
-lin> cat <<'EOF' | sudo tee /etc/systemd/system/backup.timer
+lin> cat <<'EOF2' | sudo tee /etc/systemd/system/backup.timer
 [Timer]
 OnCalendar=*-*-* 02:00:00
 Persistent=true
 [Install]
 WantedBy=timers.target
-EOF
+EOF2
 lin> sudo systemctl daemon-reload
 lin> sudo systemctl enable --now backup.timer
 lin> systemctl list-timers | grep backup
 ```
+
+systemd timer는 cron보다 상태 확인/로그 확인이 쉽다.
 
 ---
 
@@ -101,6 +112,8 @@ lin> sudo mount /dev/mapper/data_crypt /mnt/data
 lin> sudo rsync -a --delete /etc/ /mnt/data/etc/
 ```
 
+암호화 스토리지는 보안에 중요하지만, 성능과 운영 복잡도도 같이 고려해야 한다.
+
 ---
 
 ## 실습 5: 관측/성능 1차 진단
@@ -129,3 +142,4 @@ lin> sar -u 1 3
 - systemd 변경 반영 안 됨: `systemctl daemon-reload` 확인
 - SELinux 차단: `/var/log/audit/audit.log`와 `ausearch -m avc`로 원인 확인
 - 성능 저하: load, iowait, CPU steal을 함께 확인
+

@@ -23,9 +23,14 @@ IP/라우팅/DNS 확인으로 네트워크를 1차 진단한다.
 
 ## 핵심 개념
 
-- `ip` 명령이 표준 (ifconfig/route는 구형)
-- DNS 해석 경로: `/etc/resolv.conf` 또는 systemd-resolved
-- 기본 게이트웨이 = `ip route`의 `default` 항목
+**`ip` 명령이 표준**
+과거에는 ifconfig/route를 썼지만 지금은 `ip`가 표준이다.
+
+**DNS 해석 경로**
+도메인을 IP로 바꿔주는 과정이며, `/etc/resolv.conf` 또는 systemd-resolved가 담당한다.
+
+**기본 게이트웨이**
+`ip route`의 `default` 항목이 “외부로 나가는 길”이다.
 
 ---
 
@@ -80,11 +85,22 @@ lin> dig example.com
 
 ## 08.4 클라우드 네트워킹 필수
 
+아래 내용은 클라우드/운영 환경에서 자주 만나는 네트워크 설정들이다. 당장 외우기보다 “어떤 경우에 쓰는지”를 이해하는 게 중요하다.
+
 - cloud-init: `/etc/netplan/50-cloud-init.yaml` 생성·관리 → 수동 수정 시 `netplan generate && netplan apply`
+  - 클라우드 부팅 시 자동으로 네트워크 설정을 만들어준다.
 - systemd-networkd: `/etc/systemd/network/*.network` 파일로 인터페이스 정의, `networkctl status`
+  - netplan 대신 systemd가 직접 네트워크를 관리하는 방식이다.
 - MTU/MSS: 터널/VPN 환경에서 `ip link set dev eth0 mtu 1400`, iptables `-j TCPMSS --set-mss 1360`
+  - 패킷이 잘릴 때 MTU를 낮춰 문제를 해결한다.
 - VRF 기본: `ip link add vrf-blue type vrf table 100; ip link set vrf-blue up; ip link set eth1 master vrf-blue; ip route add table 100 default via 10.0.0.1`
+  - 같은 서버 안에 “가상 라우터”를 여러 개 만드는 개념이다.
 - 다중 라우팅 테이블: `ip rule add from 10.0.1.0/24 table 100`, `ip route add table 100 default via 10.0.1.1`
+  - 트래픽 출발지에 따라 다른 경로로 보내는 정책 라우팅이다.
 - DNS split: systemd-resolved DNS 우선순위 `resolvectl dns eth0 1.1.1.1` + `resolvectl domain eth0 '~corp.local'`
+  - 특정 도메인은 회사 DNS로만 해석하는 방식이다.
 - 클라우드 메타데이터: IMDSv2 예시 `curl -H "X-aws-ec2-metadata-token: $(curl -X PUT \"http://169.254.169.254/latest/api/token\" -H \"X-aws-ec2-metadata-token-ttl-seconds: 21600\")" http://169.254.169.254/latest/meta-data/instance-id`
+  - 인스턴스 ID 같은 정보를 메타데이터 서버에서 조회한다.
 - IPv6 기본: `sysctl net.ipv6.conf.all.disable_ipv6=0`, SLAAC/RA 확인 `rdisc6`, NAT64 환경에서 MTU 1280 고려
+  - IPv6 환경에서는 MTU와 자동 주소 설정 이슈를 자주 본다.
+

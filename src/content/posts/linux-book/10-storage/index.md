@@ -23,11 +23,17 @@ showCover: false
 
 ## 핵심 개념
 
-- 디바이스 파일: `/dev/sdX`, `/dev/nvme0n1`
-- 마운트: 파일시스템을 트리에 연결
-- `/etc/fstab`은 부팅 시 마운트 규칙
-- fstab 6필드: 디바이스/UUID, 마운트 지점, 타입, 옵션, dump, fsck 순서
-- 예: `UUID=... /data ext4 defaults,nofail 0 2`
+**디바이스 파일**
+디스크는 `/dev/sdX`, `/dev/nvme0n1` 같은 파일로 표현된다. 리눅스는 장치를 파일처럼 다룬다.
+
+**마운트**
+디스크를 특정 폴더에 “붙여서” 쓰는 과정이다. 마운트를 해야만 디스크가 보인다.
+
+**/etc/fstab**
+부팅 시 어떤 디스크를 어디에 마운트할지 적어 놓는 설정 파일이다. 한 줄이 하나의 규칙이다.
+
+**fstab 6필드**
+디바이스/UUID, 마운트 지점, 타입, 옵션, dump, fsck 순서로 구성된다. 옵션이 잘못되면 부팅이 느려질 수 있다.
 
 ---
 
@@ -84,6 +90,8 @@ lin> free -h
 
 ## 10.4 LVM 필수 작업
 
+LVM은 “디스크를 유연하게 나누고 늘리는 방식”이다. 운영 환경에서 자주 쓰인다.
+
 - PV/VG/LV 생성
   ```bash
   sudo pvcreate /dev/sdb
@@ -100,6 +108,8 @@ lin> free -h
 
 ## 10.5 소프트웨어 RAID(mdadm)
 
+RAID는 디스크 장애에 대비하는 기술이다. 소프트웨어 RAID는 리눅스가 직접 관리한다.
+
 - RAID1 생성: `sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc`
 - 상태: `cat /proc/mdstat`, `mdadm --detail /dev/md0`
 - 장애 디스크 교체: 실패 디스크 `--fail --remove`, 새 디스크 `--add`
@@ -109,8 +119,11 @@ lin> free -h
 
 ## 10.6 파일시스템 선택 가이드
 
+파일시스템마다 특성이 다르다. 목적에 맞춰 선택한다.
+
 - ext4: 기본값, 안정/낮은 오버헤드
-- xfs: 대용량/병렬 I/O에 강함(로그 구조), 온라인 확장만 가능
-- btrfs: 스냅숏, 압축, RAID 내장(운영에서 신중)
+- xfs: 대용량/병렬 I/O에 강함(온라인 확장만 가능)
+- btrfs: 스냅숏/압축/RAID 내장(운영에서 신중)
 - zfs: 풀 스냅숏/검증, 메모리 요구 높음
 - 마운트 옵션 예: `noatime`, `discard`(SSD), `data=ordered`(ext4 기본), `pquota`(xfs 프로젝트 쿼터)
+
