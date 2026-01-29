@@ -41,6 +41,14 @@ const closePanel = () => {
 	panel?.classList.add("float-panel-closed");
 };
 
+const resetSearchState = () => {
+	keywordDesktop = "";
+	keywordMobile = "";
+	result = [];
+	isSearching = false;
+	closePanel();
+};
+
 const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 	const panel = document.getElementById("search-panel");
 	if (!panel || !isDesktop) return;
@@ -108,12 +116,21 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 
 onMount(() => {
 	const handlePageChange = () => {
-		closePanel();
+		resetSearchState();
 	};
 
 	document.addEventListener("swup:contentReplaced", handlePageChange);
 	document.addEventListener("swup:pageView", handlePageChange);
 	document.addEventListener("astro:page-load", handlePageChange);
+	document.addEventListener("swup:visitStart", handlePageChange);
+
+	const hookCleanups: Array<() => void> = [];
+	const swup = (window as typeof window & { swup?: any }).swup;
+	if (swup?.hooks?.on) {
+		hookCleanups.push(swup.hooks.on("content:replace", handlePageChange));
+		hookCleanups.push(swup.hooks.on("page:view", handlePageChange));
+		hookCleanups.push(swup.hooks.on("visit:start", handlePageChange));
+	}
 
 	const initializeSearch = () => {
 		initialized = true;
@@ -156,6 +173,12 @@ onMount(() => {
 		document.removeEventListener("swup:contentReplaced", handlePageChange);
 		document.removeEventListener("swup:pageView", handlePageChange);
 		document.removeEventListener("astro:page-load", handlePageChange);
+		document.removeEventListener("swup:visitStart", handlePageChange);
+		hookCleanups.forEach((cleanup) => {
+			if (typeof cleanup === "function") {
+				cleanup();
+			}
+		});
 	};
 });
 
