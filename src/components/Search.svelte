@@ -125,13 +125,13 @@ onMount(() => {
 	}
 });
 
-$: if (initialized && keywordDesktop) {
+$: if (initialized) {
 	(async () => {
 		await search(keywordDesktop, true);
 	})();
 }
 
-$: if (initialized && keywordMobile) {
+$: if (initialized) {
 	(async () => {
 		await search(keywordMobile, false);
 	})();
