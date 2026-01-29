@@ -41,6 +41,14 @@ const closePanel = () => {
 	panel?.classList.add("float-panel-closed");
 };
 
+const resetSearchState = () => {
+	keywordDesktop = "";
+	keywordMobile = "";
+	result = [];
+	isSearching = false;
+	closePanel();
+};
+
 const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 	const panel = document.getElementById("search-panel");
 	if (!panel || !isDesktop) return;
@@ -108,7 +116,7 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 
 onMount(() => {
 	const handlePageChange = () => {
-		closePanel();
+		resetSearchState();
 	};
 
 	document.addEventListener("swup:contentReplaced", handlePageChange);
