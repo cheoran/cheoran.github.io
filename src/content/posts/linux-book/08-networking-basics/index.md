@@ -17,10 +17,15 @@ showCover: false
 - 네트워크 장애를 1차 진단한다.
   :::
 
+## 한줄 요약
+
+IP/라우팅/DNS 확인으로 네트워크를 1차 진단한다.
+
 ## 핵심 개념
 
 - `ip` 명령이 표준 (ifconfig/route는 구형)
 - DNS 해석 경로: `/etc/resolv.conf` 또는 systemd-resolved
+- 기본 게이트웨이 = `ip route`의 `default` 항목
 
 ---
 
@@ -37,6 +42,7 @@ showCover: false
 ```bash
 lin> ip addr show
 lin> ip route
+lin> ip route | grep default
 ```
 
 ---
@@ -60,8 +66,8 @@ lin> dig example.com
 
 ## 체크포인트
 
-- 기본 게이트웨이를 찾을 수 있는가?
-- 리슨 포트를 확인하고 프로세스와 매칭할 수 있는가?
+- 기본 게이트웨이를 `ip route`에서 찾을 수 있는가?
+- 리슨 포트를 보고 어떤 프로세스인지 매칭할 수 있는가?
 
 ---
 

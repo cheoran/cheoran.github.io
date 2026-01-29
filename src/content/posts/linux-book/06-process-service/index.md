@@ -18,11 +18,17 @@ showCover: false
 - 리소스 사용률을 측정한다.
   :::
 
+## 한줄 요약
+
+프로세스와 서비스 상태를 확인·제어하는 법을 익힌다.
+
 ## 핵심 개념
 
 - PID, PPID
 - foreground / background
-- nice / renice
+- nice / renice(우선순위 조정)
+- SIGTERM(정상 종료 요청) vs SIGKILL(강제 종료, 정리 불가)
+- 서비스 단위 파일 위치: 기본 `/usr/lib/systemd/system`, 로컬/오버라이드 `/etc/systemd/system`
 
 ---
 
@@ -64,8 +70,8 @@ lin> journalctl -u systemd-resolved -n 50
 
 ## 체크포인트
 
-- SIGTERM과 SIGKILL 차이를 설명할 수 있는가?
-- 서비스 단위 파일 위치를 알고 있는가? (`/etc/systemd/system`)
+- SIGTERM과 SIGKILL 차이를 말할 수 있는가?
+- systemd 서비스 파일이 기본/오버라이드 어디에 있는지 말할 수 있는가?
 
 ---
 

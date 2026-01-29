@@ -17,6 +17,12 @@ showCover: false
 - 파이프라인을 활용해 문제를 빠르게 진단한다.
   :::
 
+## 한줄 요약
+
+텍스트 도구와 파이프라인으로 로그를 빠르게 필터링한다.
+
+팁: `grep -E`는 확장 정규식(OR `|`, `+` 등)을 쉽게 쓸 때 사용한다.
+
 ## 필수 명령어
 
 - `cat`, `head`, `tail -f`
@@ -39,20 +45,26 @@ lin> sudo tail -f /var/log/syslog
 lin> sudo ss -ant | awk '{print $1,$4,$5}' | head
 ```
 
+## 실습 2.5: 파이프라인 3개 이상
+
+```bash
+lin> sudo journalctl -u ssh -n 200 | grep -E "Failed|Invalid" | awk '{print $1,$2,$3,$11}' | sort | uniq -c
+```
+
 ---
 
 ## 실습 3: 에러만 추출
 
 ```bash
-lin> grep -i "error" /var/log/syslog | tail -n 20
+lin> grep -E "error|fail" /var/log/syslog | tail -n 20
 ```
 
 ---
 
 ## 체크포인트
 
-- 파이프라인을 3개 이상 연결할 수 있는가?
-- `grep -E` 정규식 기초를 알고 있는가?
+- 파이프라인을 3단 이상 연결해 로그를 필터링할 수 있는가?
+- `grep -E`로 OR 조건을 쓸 수 있는가?
 
 ---
 

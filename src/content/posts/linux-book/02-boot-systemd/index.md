@@ -18,11 +18,15 @@ showCover: false
 - 장애 시 복구 모드 진입과 최소 점검이 가능하다.
   :::
 
+## 한줄 요약
+
+부팅 흐름과 systemd 서비스 관리 기본을 익힌다.
+
 ## 핵심 개념
 
-- **부트로더**: GRUB
-- **init 시스템**: systemd
-- **타겟**: rescue, multi-user, graphical
+- **부트로더**: GRUB(커널을 로드하고 부팅 옵션을 고름)
+- **init 시스템**: systemd(서비스/부팅 과정을 관리)
+- **타겟(target)**: 부팅 모드 이름 (예: `rescue`=복구, `multi-user`=CLI, `graphical`=GUI)
 
 ---
 
@@ -63,8 +67,8 @@ lin> sudo systemctl set-default multi-user.target
 
 ## 체크포인트
 
-- 서비스가 자동 시작되는지 판단할 수 있는가?
-- 특정 서비스 로그를 `journalctl`로 확인할 수 있는가?
+- 서비스가 부팅 시 자동 시작인지 확인할 수 있는가?
+- `journalctl`로 특정 서비스 로그를 볼 수 있는가?
 
 ---
 
