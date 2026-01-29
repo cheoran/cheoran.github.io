@@ -12,8 +12,6 @@ let result: SearchResult[] = [];
 let isSearching = false;
 let pagefindLoaded = false;
 let initialized = false;
-import { OverlayScrollbars } from "overlayscrollbars";
-let searchResultsScrollbar: ReturnType<typeof OverlayScrollbars> | null = null;
 
 const fakeResult: SearchResult[] = [
 	{
@@ -104,20 +102,6 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 };
 
 onMount(() => {
-	const initSearchScrollbar = () => {
-		const results = document.getElementById("search-results");
-		if (!results || results.hasAttribute("data-scrollbar-initialized")) return;
-		results.setAttribute("data-scrollbar-initialized", "true");
-		searchResultsScrollbar = OverlayScrollbars(results, {
-			scrollbars: {
-				theme: "scrollbar-base scrollbar-auto py-1",
-				autoHide: "move",
-				autoHideDelay: 500,
-				autoHideSuspend: false,
-			},
-		});
-	};
-
 	const initializeSearch = () => {
 		initialized = true;
 		pagefindLoaded =
@@ -127,7 +111,6 @@ onMount(() => {
 		console.log("Pagefind status on init:", pagefindLoaded);
 		if (keywordDesktop) search(keywordDesktop, true);
 		if (keywordMobile) search(keywordMobile, false);
-		initSearchScrollbar();
 	};
 
 	if (import.meta.env.DEV) {
@@ -205,20 +188,18 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
     </div>
 
     <!-- search results -->
-    <div id="search-results" class="search-results">
-        {#each result as item}
-            <a href={item.url}
-               class="transition first-of-type:mt-2 lg:first-of-type:mt-0 group block
-           rounded-xl text-lg px-3 py-2 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]">
-                <div class="transition text-90 inline-flex font-bold group-hover:text-[var(--primary)]">
-                    {item.meta.title}<Icon icon="fa6-solid:chevron-right" class="transition text-[0.75rem] translate-x-1 my-auto text-[var(--primary)]"></Icon>
-                </div>
-                <div class="transition text-sm text-50">
-                    {@html item.excerpt}
-                </div>
-            </a>
-        {/each}
-    </div>
+    {#each result as item}
+        <a href={item.url}
+           class="transition first-of-type:mt-2 lg:first-of-type:mt-0 group block
+       rounded-xl text-lg px-3 py-2 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)]">
+            <div class="transition text-90 inline-flex font-bold group-hover:text-[var(--primary)]">
+                {item.meta.title}<Icon icon="fa6-solid:chevron-right" class="transition text-[0.75rem] translate-x-1 my-auto text-[var(--primary)]"></Icon>
+            </div>
+            <div class="transition text-sm text-50">
+                {@html item.excerpt}
+            </div>
+        </a>
+    {/each}
 </div>
 
 <style>
@@ -226,12 +207,8 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
     outline: 0;
   }
   .search-panel {
-    max-height: calc(100dvh - 6rem);
-    overflow: hidden;
-  }
-  .search-results {
     max-height: calc(100dvh - 12rem);
-    overflow: auto;
+    overflow-y: auto;
   }
   @media (max-width: 640px) {
     #search-bar input,
