@@ -228,6 +228,26 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
   .search-panel {
     max-height: calc(100dvh - 12rem);
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--search-scrollbar-bg) transparent;
+  }
+  .search-panel::-webkit-scrollbar {
+    width: 10px;
+  }
+  .search-panel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .search-panel::-webkit-scrollbar-thumb {
+    background-color: var(--search-scrollbar-bg);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  .search-panel::-webkit-scrollbar-thumb:hover {
+    background-color: var(--search-scrollbar-bg-hover);
+  }
+  .search-panel::-webkit-scrollbar-thumb:active {
+    background-color: var(--search-scrollbar-bg-active);
   }
   @media (max-width: 640px) {
     #search-bar input,
