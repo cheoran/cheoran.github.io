@@ -207,7 +207,13 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
     outline: 0;
   }
   .search-panel {
-    max-height: calc(100vh - 100px);
+    max-height: calc(100dvh - 6rem);
     overflow-y: auto;
+  }
+  @media (max-width: 640px) {
+    #search-bar input,
+    #search-bar-inside input {
+      font-size: 16px;
+    }
   }
 </style>
