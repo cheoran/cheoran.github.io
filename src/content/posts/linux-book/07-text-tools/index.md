@@ -21,8 +21,6 @@ showCover: false
 
 텍스트 도구와 파이프라인으로 로그를 빠르게 필터링한다.
 
-팁: `grep -E`는 확장 정규식(OR `|`, `+` 등)을 쉽게 쓸 때 사용한다.
-
 ## 핵심 개념
 
 **파이프라인(`|`)**
@@ -41,13 +39,19 @@ showCover: false
 
 ---
 
-## 실습 1: 로그 필터링
+## 실습 1: 로그 필터링(실시간)
 
 ```bash
 lin> sudo tail -f /var/log/syslog
 ```
 
-실시간 로그를 보면서 어떤 패턴이 나오는지 감을 잡는다.
+이 명령을 사용하는 이유
+- 로그가 어떻게 쌓이는지 실시간으로 본다. 문제 분석의 감을 잡는다.
+
+예상 결과(예시):
+```text
+Feb  7 10:12:01 host CRON[1234]: (root) CMD (run-parts /etc/cron.hourly)
+```
 
 ---
 
@@ -57,23 +61,42 @@ lin> sudo tail -f /var/log/syslog
 lin> sudo ss -ant | awk '{print $1,$4,$5}' | head
 ```
 
-`awk`는 “열(column) 단위로 뽑기”에 특화돼 있다.
+이 명령을 사용하는 이유
+- 네트워크 연결 상태를 “열 단위”로 빠르게 요약한다.
 
-## 실습 2.5: 파이프라인 3개 이상
+예상 결과(예시):
+```text
+State Local Address:Port Peer Address:Port
+ESTAB 10.0.0.10:22 10.0.0.1:53214
+```
+
+---
+
+## 실습 3: 파이프라인 3단 연결
 
 ```bash
 lin> sudo journalctl -u ssh -n 200 | grep -E "Failed|Invalid" | awk '{print $1,$2,$3,$11}' | sort | uniq -c
 ```
 
-여러 명령을 연결해서 “로그 → 필터 → 요약” 흐름을 만든다.
+이 명령을 사용하는 이유
+- 로그에서 “실패 메시지”만 뽑고, 어떤 계정으로 실패했는지 요약한다.
+
+예상 결과(예시):
+```text
+  5 Feb  7 10:20:21 invalid
+ 12 Feb  7 10:22:01 root
+```
 
 ---
 
-## 실습 3: 에러만 추출
+## 실습 4: 에러만 추출
 
 ```bash
 lin> grep -E "error|fail" /var/log/syslog | tail -n 20
 ```
+
+이 명령을 사용하는 이유
+- 에러 관련 로그만 빠르게 확인한다.
 
 ---
 

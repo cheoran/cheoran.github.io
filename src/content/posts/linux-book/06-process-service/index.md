@@ -53,8 +53,27 @@ SIGTERM은 “정상 종료 요청”, SIGKILL은 “즉시 강제 종료”다.
 
 ```bash
 lin> ps aux | head
+```
+
+이 명령을 사용하는 이유
+- 현재 실행 중인 프로세스를 목록으로 확인한다.
+
+예상 결과(예시):
+```text
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1 169820  9800 ?        Ss   09:00   0:02 /sbin/init
+```
+
+```bash
 lin> top
 ```
+
+이 명령을 사용하는 이유
+- 실시간으로 CPU/메모리 사용량과 프로세스를 본다.
+
+예상 결과(예시):
+- 화면 상단에 load, CPU, 메모리 요약
+- 아래에 프로세스 목록
 
 ---
 
@@ -66,6 +85,12 @@ lin> ps aux | grep sleep
 lin> kill <PID>
 ```
 
+이 명령을 사용하는 이유
+- 정상 종료(SIGTERM)를 보내는 연습이다.
+
+예상 결과(예시):
+- `sleep` 프로세스가 목록에서 사라짐
+
 ---
 
 ## 실습 3: 서비스 로그 확인
@@ -73,6 +98,14 @@ lin> kill <PID>
 ```bash
 lin> systemctl status systemd-resolved
 lin> journalctl -u systemd-resolved -n 50
+```
+
+이 명령을 사용하는 이유
+- 서비스 상태와 로그를 함께 확인하는 습관을 만든다.
+
+예상 결과(예시):
+```text
+Active: active (running)
 ```
 
 ---
@@ -102,7 +135,7 @@ lin> journalctl -u systemd-resolved -n 50
 - ulimit: `/etc/security/limits.d/app.conf`에 `nofile`, `nproc` 설정
   - 열린 파일 수나 프로세스 수 제한을 조정할 때 사용한다.
 - 커널 파라미터(sysctl) 주요 항목
-  - 메모리: `vm.swappiness=10`, `vm.dirty_ratio=15`, `vm.max_map_count` (ElasticSearch류)
+  - 메모리: `vm.swappiness=10`, `vm.dirty_ratio=15`, `vm.max_map_count`
   - 네트워크 큐: `net.core.somaxconn=1024`, `net.core.netdev_max_backlog=4096`
   - 포트 고갈 방지: `net.ipv4.ip_local_port_range = 1024 65000`, `net.ipv4.tcp_tw_reuse=1`
 - 측정 → 조정 → 재측정: `pidstat`, `iostat -x`, `perf stat`, `systemd-cgtop`으로 영향 확인

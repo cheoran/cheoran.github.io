@@ -46,8 +46,28 @@ IP/라우팅/DNS 확인으로 네트워크를 1차 진단한다.
 
 ```bash
 lin> ip addr show
+```
+
+이 명령을 사용하는 이유
+- 내 서버의 IP 주소와 인터페이스 상태를 확인한다.
+
+예상 결과(예시):
+```text
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP>
+    inet 10.0.0.10/24 brd 10.0.0.255 scope global eth0
+```
+
+```bash
 lin> ip route
-lin> ip route | grep default
+```
+
+이 명령을 사용하는 이유
+- 트래픽이 어디로 나가는지(라우팅 테이블)를 확인한다.
+
+예상 결과(예시):
+```text
+default via 10.0.0.1 dev eth0
+10.0.0.0/24 dev eth0 proto kernel scope link src 10.0.0.10
 ```
 
 ---
@@ -58,6 +78,14 @@ lin> ip route | grep default
 lin> ss -lntup
 ```
 
+이 명령을 사용하는 이유
+- 현재 열려 있는 포트와 해당 프로세스를 확인한다.
+
+예상 결과(예시):
+```text
+LISTEN 0 128 0.0.0.0:22 0.0.0.0:* users:("sshd",pid=1234,fd=3)
+```
+
 ---
 
 ## 실습 3: DNS 확인
@@ -65,6 +93,14 @@ lin> ss -lntup
 ```bash
 lin> resolvectl status
 lin> dig example.com
+```
+
+이 명령을 사용하는 이유
+- DNS 서버가 어디인지, 도메인 해석이 되는지 확인한다.
+
+예상 결과(예시):
+```text
+example.com.  300 IN A 93.184.216.34
 ```
 
 ---

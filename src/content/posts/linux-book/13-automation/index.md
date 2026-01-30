@@ -54,6 +54,14 @@ lin> chmod +x /tmp/backup.sh
 lin> /tmp/backup.sh
 ```
 
+이 명령을 사용하는 이유
+- 반복 작업을 스크립트로 만든다. 실패 시 즉시 종료되도록 설정한다.
+
+예상 결과(예시):
+```text
+backup done: /tmp/backup-2026-02-13
+```
+
 ---
 
 ## 실습 2: cron 설정
@@ -64,6 +72,9 @@ lin> crontab -e
 0 2 * * * /tmp/backup.sh >> /tmp/backup.log 2>&1
 lin> crontab -l
 ```
+
+이 명령을 사용하는 이유
+- 매일 정해진 시간에 자동으로 백업하도록 설정한다.
 
 ---
 

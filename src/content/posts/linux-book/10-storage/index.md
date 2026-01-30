@@ -48,9 +48,36 @@ showCover: false
 
 ```bash
 lin> lsblk
+```
+
+이 명령을 사용하는 이유
+- 디스크/파티션 구조를 확인한다.
+
+예상 결과(예시):
+```text
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   50G  0 disk
+└─sda1   8:1    0   50G  0 part /
+```
+
+```bash
 lin> blkid
+```
+
+이 명령을 사용하는 이유
+- 디스크의 UUID/파일시스템 타입을 확인한다. fstab 작성에 필요하다.
+
+예상 결과(예시):
+```text
+/dev/sda1: UUID="abcd-1234" TYPE="ext4"
+```
+
+```bash
 lin> df -h
 ```
+
+이 명령을 사용하는 이유
+- 마운트된 디스크의 사용량을 확인한다.
 
 ---
 
@@ -63,6 +90,9 @@ lin> df -h | grep /mnt/data
 lin> sudo umount /mnt/data
 ```
 
+이 명령을 사용하는 이유
+- 디스크를 “임시로” 붙였다가 떼는 과정을 이해한다.
+
 ---
 
 ## 실습 3: 스왑 확인
@@ -71,6 +101,9 @@ lin> sudo umount /mnt/data
 lin> swapon --show
 lin> free -h
 ```
+
+이 명령을 사용하는 이유
+- 스왑이 켜져 있는지 확인한다. 메모리가 부족할 때 시스템 안정성에 영향을 준다.
 
 ---
 
@@ -100,8 +133,8 @@ LVM은 “디스크를 유연하게 나누고 늘리는 방식”이다. 운영 
   sudo mkfs.ext4 /dev/vgdata/lvdata
   sudo mount /dev/vgdata/lvdata /data
   ```
-- 온라인 확장: `sudo lvextend -r -L +10G /dev/vgdata/lvdata` (`-r`로 파일시스템 동시 확장)
-- 스냅숏 백업: `lvcreate -s -L 5G -n snap_lvdata /dev/vgdata/lvdata` → 마운트 후 백업 → 삭제
+- 온라인 확장: `sudo lvextend -r -L +10G /dev/vgdata/lvdata`
+- 스냅숏 백업: `lvcreate -s -L 5G -n snap_lvdata /dev/vgdata/lvdata`
 - 축소는 위험: ext4는 오프라인 축소 필요, 가능하면 새 LV로 마이그레이션 후 교체
 
 ---

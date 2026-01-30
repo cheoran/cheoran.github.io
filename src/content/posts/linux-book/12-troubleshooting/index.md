@@ -47,6 +47,9 @@ lin> journalctl -u nginx -n 50
 lin> sudo ss -lntup | grep nginx
 ```
 
+이 명령을 사용하는 이유
+- 상태 → 로그 → 포트 확인으로 “서비스가 왜 안 뜨는지” 단계적으로 확인한다.
+
 ---
 
 ## 실습 2: 네트워크 장애 진단
@@ -57,6 +60,9 @@ lin> ip route
 lin> ping -c 3 8.8.8.8
 lin> curl -I https://example.com
 ```
+
+이 명령을 사용하는 이유
+- 내 IP/라우팅/외부 통신/HTTP 응답을 순서대로 확인한다.
 
 ---
 

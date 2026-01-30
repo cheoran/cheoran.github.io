@@ -55,6 +55,16 @@ lin> sudo ufw enable
 lin> sudo ufw status verbose
 ```
 
+이 명령을 사용하는 이유
+- “기본 차단 + 필요한 포트만 허용” 정책을 만드는 과정이다.
+
+예상 결과(예시):
+```text
+Status: active
+To                         Action      From
+22/tcp                     ALLOW       Anywhere
+```
+
 ---
 
 ## 실습 2: 서비스 포트 열기
@@ -64,6 +74,9 @@ lin> sudo ufw allow 80/tcp
 lin> sudo ufw allow 443/tcp
 lin> sudo ufw status numbered
 ```
+
+이 명령을 사용하는 이유
+- 웹 서비스(80/443)를 열고 규칙 번호를 확인한다. 삭제/수정은 번호 기반으로 한다.
 
 ---
 
@@ -76,6 +89,9 @@ lin> sudo nano /etc/ssh/sshd_config
 lin> sudo systemctl reload ssh
 lin> sudo journalctl -u ssh --since "10 min ago"
 ```
+
+이 명령을 사용하는 이유
+- 루트 직접 로그인과 비밀번호 로그인을 막아서 보안을 강화한다.
 
 ---
 

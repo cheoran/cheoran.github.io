@@ -63,6 +63,9 @@ lin> sudo systemctl restart ssh
 lin> systemctl status ssh
 ```
 
+이 명령을 사용하는 이유
+- 서비스 재시작 정책을 덧붙이는 연습이다. 장애 시 자동 복구를 돕는다.
+
 ```bash
 lin> cat <<'EOF2' | sudo tee /etc/systemd/system/backup.timer
 [Timer]
@@ -76,7 +79,8 @@ lin> sudo systemctl enable --now backup.timer
 lin> systemctl list-timers | grep backup
 ```
 
-systemd timer는 cron보다 상태 확인/로그 확인이 쉽다.
+이 명령을 사용하는 이유
+- cron 대신 systemd timer를 사용하는 방법을 익힌다.
 
 ---
 
@@ -88,6 +92,9 @@ lin> if command -v dnf; then dnf --version; else apt --version; fi
 lin> getenforce || sestatus
 ```
 
+이 명령을 사용하는 이유
+- 배포판과 보안 정책이 무엇인지 먼저 확인해야 운영 방식이 달라진다.
+
 ---
 
 ## 실습 3: 호스트 방화벽 점검
@@ -97,7 +104,8 @@ lin> sudo ss -lntup
 lin> sudo ufw status verbose || sudo nft list ruleset
 ```
 
-- SG/NACL은 클라우드 콘솔에서 별도로 확인한다.
+이 명령을 사용하는 이유
+- 호스트 내부에서 실제로 열려 있는 포트와 방화벽 규칙을 확인한다.
 
 ---
 
@@ -112,7 +120,8 @@ lin> sudo mount /dev/mapper/data_crypt /mnt/data
 lin> sudo rsync -a --delete /etc/ /mnt/data/etc/
 ```
 
-암호화 스토리지는 보안에 중요하지만, 성능과 운영 복잡도도 같이 고려해야 한다.
+이 명령을 사용하는 이유
+- 암호화 스토리지와 백업의 기본 흐름을 이해한다.
 
 ---
 
@@ -124,6 +133,9 @@ lin> vmstat 1 5
 lin> iostat -x 1 3
 lin> sar -u 1 3
 ```
+
+이 명령을 사용하는 이유
+- CPU/메모리/디스크의 병목을 빠르게 판단한다.
 
 ---
 

@@ -45,9 +45,24 @@ systemd가 관리하는 중앙 로그 저장소다. 서비스 로그를 한 곳�
 
 ```bash
 lin> journalctl -u ssh -n 50
+```
+
+이 명령을 사용하는 이유
+- 특정 서비스(ssh)의 최근 로그를 확인한다.
+
+```bash
 lin> journalctl --since "1 hour ago"
+```
+
+이 명령을 사용하는 이유
+- 시간 범위를 좁혀서 최근 로그만 본다.
+
+```bash
 lin> journalctl -p err -b
 ```
+
+이 명령을 사용하는 이유
+- 이번 부팅에서 발생한 에러 레벨만 모아서 본다.
 
 ---
 
@@ -57,6 +72,9 @@ lin> journalctl -p err -b
 lin> sudo tail -f /var/log/syslog
 ```
 
+이 명령을 사용하는 이유
+- 실시간 로그를 보고 문제 발생 시점을 찾는다.
+
 ---
 
 ## 실습 3: 리소스 모니터링
@@ -65,6 +83,14 @@ lin> sudo tail -f /var/log/syslog
 lin> top
 lin> free -h
 lin> vmstat 1 5
+```
+
+이 명령을 사용하는 이유
+- CPU/메모리/디스크 상태를 빠르게 확인한다.
+
+예상 결과(예시):
+```text
+Mem:  1.9Gi total,  1.2Gi used,  0.4Gi free
 ```
 
 ---

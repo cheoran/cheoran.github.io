@@ -48,6 +48,15 @@ lin> curl -I http://127.0.0.1:8080
 lin> sudo docker ps
 ```
 
+이 명령을 사용하는 이유
+- nginx 컨테이너를 실행하고, 실제로 접근 가능한지 확인한다.
+
+예상 결과(예시):
+```text
+HTTP/1.1 200 OK
+Server: nginx/1.25
+```
+
 ---
 
 ## 실습 2: 로그 확인 및 종료
@@ -57,6 +66,9 @@ lin> sudo docker logs web
 lin> sudo docker stop web
 lin> sudo docker rm web
 ```
+
+이 명령을 사용하는 이유
+- 로그를 확인하고 컨테이너를 정상 종료/삭제한다.
 
 ---
 
