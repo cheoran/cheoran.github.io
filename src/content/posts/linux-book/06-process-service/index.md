@@ -126,17 +126,28 @@ Active: active (running)
 
 ## 06.6 리소스 튜닝 & QoS
 
-이 영역은 운영 환경에서 성능을 미세 조정할 때 쓰인다. 지금 당장 외우기보다 “필요할 때 찾아서 적용”하는 개념으로 이해하면 된다.
+이 영역은 운영 환경에서 성능을 미세 조정할 때 쓰인다. 지금 당장 외우기보다 “증상이 생겼을 때 원인을 좁혀가며 적용”하는 개념으로 이해하면 된다.
+먼저 측정으로 병목을 찾고, 범위를 좁힌 뒤, 작은 변경을 적용하고 다시 측정한다.
 
 - systemd slice 활용: `systemctl set-property mysvc.service CPUQuota=50% MemoryMax=1G`
-  - 특정 서비스의 CPU/메모리를 제한하는 방법이다.
+  - 한 서비스가 리소스를 독점할 때 상한을 걸어 “다른 서비스가 죽지 않게” 만든다.
+  - CPUQuota는 CPU 비율 제한, MemoryMax는 메모리 상한이다.
 - cgroups v2 확인: `ls /sys/fs/cgroup`; `systemd.unified_cgroup_hierarchy=1`
-  - 리소스를 그룹별로 관리하는 커널 기능이다.
+  - 리소스를 “그룹 단위”로 묶어 제한하고 모니터링하는 커널 기능이다.
+  - systemd 서비스 단위 제한도 cgroups 위에서 동작한다.
 - ulimit: `/etc/security/limits.d/app.conf`에 `nofile`, `nproc` 설정
-  - 열린 파일 수나 프로세스 수 제한을 조정할 때 사용한다.
+  - 파일 핸들이 모자라거나 프로세스 생성 실패가 날 때 상한을 조정한다.
+  - `nofile`은 열린 파일 수, `nproc`은 프로세스/스레드 수 제한이다.
 - 커널 파라미터(sysctl) 주요 항목
-  - 메모리: `vm.swappiness=10`, `vm.dirty_ratio=15`, `vm.max_map_count`
-  - 네트워크 큐: `net.core.somaxconn=1024`, `net.core.netdev_max_backlog=4096`
-  - 포트 고갈 방지: `net.ipv4.ip_local_port_range = 1024 65000`, `net.ipv4.tcp_tw_reuse=1`
-- 측정 → 조정 → 재측정: `pidstat`, `iostat -x`, `perf stat`, `systemd-cgtop`으로 영향 확인
-
+  - 메모리
+    - `vm.swappiness=10` : 스왑 사용을 줄여 메모리 기반 처리 성능을 우선한다.
+    - `vm.dirty_ratio=15` : 디스크로 밀어낼 더티 페이지 임계치를 조정한다.
+    - `vm.max_map_count` : 많은 메모리 매핑을 쓰는 앱(예: 검색엔진)에서 부족하면 올린다.
+  - 네트워크 큐
+    - `net.core.somaxconn=1024` : 서버 accept 대기열 상한(동시 연결 폭주 대응).
+    - `net.core.netdev_max_backlog=4096` : NIC 수신 큐가 가득 차 패킷 드롭이 날 때 조정.
+  - 포트 고갈 방지
+    - `net.ipv4.ip_local_port_range = 1024 65000` : 클라이언트가 쓸 수 있는 포트 범위를 늘린다.
+    - `net.ipv4.tcp_tw_reuse=1` : TIME_WAIT 포트 재사용으로 단시간 대량 연결을 버틴다.
+- 측정 → 조정 → 재측정
+  - `pidstat`(프로세스별 CPU/메모리), `iostat -x`(디스크), `perf stat`(CPU 카운터), `systemd-cgtop`(cgroup)으로 변화 전후를 비교한다.

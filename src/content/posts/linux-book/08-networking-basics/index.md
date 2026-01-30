@@ -122,21 +122,30 @@ example.com.  300 IN A 93.184.216.34
 ## 08.4 클라우드 네트워킹 필수
 
 아래 내용은 클라우드/운영 환경에서 자주 만나는 네트워크 설정들이다. 당장 외우기보다 “어떤 경우에 쓰는지”를 이해하는 게 중요하다.
+핵심은 “누가 네트워크 설정을 만들고, 어디서 바꾸며, 문제가 생기면 어떤 축부터 확인할지”다.
 
 - cloud-init: `/etc/netplan/50-cloud-init.yaml` 생성·관리 → 수동 수정 시 `netplan generate && netplan apply`
   - 클라우드 부팅 시 자동으로 네트워크 설정을 만들어준다.
+  - 이 파일을 직접 수정했다면 반드시 `netplan`으로 재생성/적용해야 한다.
 - systemd-networkd: `/etc/systemd/network/*.network` 파일로 인터페이스 정의, `networkctl status`
   - netplan 대신 systemd가 직접 네트워크를 관리하는 방식이다.
+  - 어떤 네트워크 데몬이 실제로 적용 중인지 확인하는 습관이 중요하다.
 - MTU/MSS: 터널/VPN 환경에서 `ip link set dev eth0 mtu 1400`, iptables `-j TCPMSS --set-mss 1360`
   - 패킷이 잘릴 때 MTU를 낮춰 문제를 해결한다.
+  - “PING은 되는데 큰 패킷이 깨지는” 증상이 대표적이다.
 - VRF 기본: `ip link add vrf-blue type vrf table 100; ip link set vrf-blue up; ip link set eth1 master vrf-blue; ip route add table 100 default via 10.0.0.1`
   - 같은 서버 안에 “가상 라우터”를 여러 개 만드는 개념이다.
+  - 테넌트별 라우팅을 분리해야 할 때 유용하다.
 - 다중 라우팅 테이블: `ip rule add from 10.0.1.0/24 table 100`, `ip route add table 100 default via 10.0.1.1`
   - 트래픽 출발지에 따라 다른 경로로 보내는 정책 라우팅이다.
+  - 한 서버에서 “관리 트래픽”과 “서비스 트래픽”을 분리할 때 자주 쓴다.
 - DNS split: systemd-resolved DNS 우선순위 `resolvectl dns eth0 1.1.1.1` + `resolvectl domain eth0 '~corp.local'`
   - 특정 도메인은 회사 DNS로만 해석하는 방식이다.
+  - 사내 도메인이 외부 DNS에서 안 풀릴 때 사용하는 전형적 패턴이다.
 - 클라우드 메타데이터: IMDSv2 예시 `curl -H "X-aws-ec2-metadata-token: $(curl -X PUT \"http://169.254.169.254/latest/api/token\" -H \"X-aws-ec2-metadata-token-ttl-seconds: 21600\")" http://169.254.169.254/latest/meta-data/instance-id`
   - 인스턴스 ID 같은 정보를 메타데이터 서버에서 조회한다.
+  - 앱/스크립트가 “내가 어느 인스턴스인지” 알아야 할 때 사용한다.
 - IPv6 기본: `sysctl net.ipv6.conf.all.disable_ipv6=0`, SLAAC/RA 확인 `rdisc6`, NAT64 환경에서 MTU 1280 고려
   - IPv6 환경에서는 MTU와 자동 주소 설정 이슈를 자주 본다.
-
+  - SLAAC는 라우터 광고(RA)로 주소를 자동 할당받는 방식이고, RA가 막히면 주소가 안 생긴다.
+  - NAT64 환경은 경로 MTU가 1280으로 제한되는 경우가 많아 MTU 조정이 필요할 수 있다.
