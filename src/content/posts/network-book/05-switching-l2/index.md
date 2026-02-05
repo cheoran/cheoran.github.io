@@ -1,6 +1,6 @@
 ---
-title: "05 L2 스위칭 "
-published: 2026-01-05
+title: "05 L2 스위칭"
+published: 2025-12-22T19:00:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false
@@ -21,7 +21,7 @@ draft: false
 
 ---
 
-## 05.1 MAC 주소
+## 05.1 MAC(Media Access Control) 주소
 
 - 48비트 고유 식별자
 - 같은 네트워크 안에서 장치를 구분
@@ -42,8 +42,6 @@ draft: false
 - 수신처 주소(MAC)를 모를 때, 스위치가 수신 포트를 제외한 모든 포트로 무조건 복사하여 전달.
   :::
 
----
-
 ```text
 [PC A] --\
           [SWITCH] ---- [PC B]
@@ -52,7 +50,7 @@ draft: false
 
 ---
 
-## 05.3 ARP (IP → MAC)
+## 05.3 ARP(Address Resolution Protocol)
 
 IP 주소만 알고 있을 때 MAC 주소를 얻는 프로토콜
 

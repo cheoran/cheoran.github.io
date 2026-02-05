@@ -1,6 +1,6 @@
 ---
-title: "10 방화벽과 NAT "
-published: 2026-01-10
+title: "10 방화벽과 NAT"
+published: 2026-01-07T09:30:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false
@@ -56,7 +56,7 @@ draft: false
 
 ---
 
-## 10.2 NAT
+## 10.2 NAT(Network Address Translation)
 
 사설 IP를 공인 IP로 변환하는 기술
 
@@ -69,16 +69,20 @@ draft: false
 
 > 그림 10-3. NAT 변환 개념
 
-### SNAT
+### SNAT(Source Network Address Translation)
 
-- 내부 → 외부
-
-### DNAT
-
-- 외부 → 내부 (포트 포워딩)
+- 내부 → 외부 (출발지 주소를 공인 IP로 변경)
 
 ```text
 [10.0.0.5] --(SNAT)--> [1.2.3.4]
+```
+
+### DNAT(Destination Network Address Translation)
+
+- 외부 → 내부 (목적지 주소/포트를 내부로 변경 = 포트포워딩)
+
+```text
+[1.2.3.4:8080] --(DNAT)--> [10.0.0.5:80]
 ```
 
 ---
@@ -154,7 +158,7 @@ vm2> sudo iptables -F
 
 ### 상황: 외부에서 내부 서비스 접속 필요
 
-- DNAT(포트 포워딩) 설정
+- DNAT 설정
 
 ---
 
@@ -207,7 +211,7 @@ lin> ss -lntp | head -n 5
 
 ---
 
-## 9.x NAT 심화: PAT(포트 주소 변환)
+## 10.13 NAT 심화: PAT(포트 주소 변환)
 
 PAT는 여러 사설 IP를 **하나의 공인 IP + 포트**로 변환한다.
 

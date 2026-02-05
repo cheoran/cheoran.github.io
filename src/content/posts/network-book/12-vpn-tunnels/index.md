@@ -1,6 +1,6 @@
 ---
-title: "12 VPN과 터널 "
-published: 2026-01-12
+title: "12 VPN과 터널"
+published: 2026-01-11T19:30:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false
@@ -21,7 +21,7 @@ draft: false
 
 ---
 
-## 12.1 VPN 개념
+## 12.1 VPN(Virtual Private Network) 개념
 
 VPN은 **암호화된 터널**을 통해 안전한 통신을 제공한다.
 

@@ -1,7 +1,7 @@
 ---
 
 title: "02 계층과 프로토콜"
-published: 2026-01-02
+published: 2025-12-09T11:00:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 tags: ["network", "학습"]
@@ -20,7 +20,7 @@ showCover: false
 
 ---
 
-## 02.1 OSI 7계층과 TCP/IP
+## 02.1 OSI(Open Systems Interconnection) 7계층과 TCP/IP(Transmission Control Protocol/Internet Protocol)
 
 ### OSI 7계층 (교육용 개념 모델)
 
@@ -32,7 +32,7 @@ showCover: false
 6. 표현(Presentation)
 7. 응용(Application)
 
-### TCP/IP (실제 인터넷 모델)
+### TCP/IP
 
 1. 네트워크 인터페이스
 2. 인터넷
@@ -52,27 +52,27 @@ showCover: false
 
 ## 02.2 계층별 핵심 역할 (실무 관점)
 
-### 2.1 물리 계층
+### 물리 계층
 
 - 케이블, 전기 신호, 무선
 - 증상: 케이블 불량, 링크 다운
 
-### 2.2 데이터링크 계층
+### 데이터링크 계층
 
 - MAC 주소, 프레임 전달, 스위칭
 - 증상: ARP 실패, 브로드캐스트 폭주
 
-### 2.3 네트워크 계층
+### 네트워크 계층
 
 - IP 주소, 라우팅
 - 증상: 다른 네트워크 접근 불가
 
-### 2.4 전송 계층
+### 전송 계층
 
 - TCP/UDP, 포트, 세션
 - 증상: 특정 포트 접속 불가
 
-### 2.5 응용 계층
+### 응용 계층
 
 - HTTP, DNS, SSH
 - 증상: 서비스 자체 오류
@@ -254,11 +254,11 @@ lin> nc -vz example.com 443
 
 ## 02.12 심화: 캡슐화와 MTU
 
-캡슐화 과정에서 **헤더가 계속 붙기 때문에 실제 전송 가능 데이터(페이로드)는 줄어든다**.  
+캡슐화 과정에서 **헤더가 계속 붙기 때문에 실제 전송 가능 데이터(페이로드)는 줄어든다**.
 예를 들어 MTU가 1500바이트일 때, TCP/IP 헤더(최소 40바이트)를 제외하면 실제 데이터는 약 1460바이트만 실을 수 있다.
 
 :::note[MTU 설명]
-**MTU(Maximum Transmission Unit)**: 한 번에 전송 가능한 최대 크기.  
+**MTU**: 한 번에 전송 가능한 최대 크기.
 이더넷 기준 보통 **1500B**이며, IP/TCP 헤더 때문에 앱 데이터는 대략 **1460B** 수준이 된다(옵션 없을 때).
 :::
 

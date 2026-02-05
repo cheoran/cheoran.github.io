@@ -36,6 +36,19 @@ const togglePanel = () => {
 	panel?.classList.toggle("float-panel-closed");
 };
 
+const closePanel = () => {
+	const panel = document.getElementById("search-panel");
+	panel?.classList.add("float-panel-closed");
+};
+
+const resetSearchState = () => {
+	keywordDesktop = "";
+	keywordMobile = "";
+	result = [];
+	isSearching = false;
+	closePanel();
+};
+
 const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 	const panel = document.getElementById("search-panel");
 	if (!panel || !isDesktop) return;
@@ -49,6 +62,12 @@ const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 
 const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 	if (!keyword) {
+		setPanelVisibility(false, isDesktop);
+		result = [];
+		return;
+	}
+	const trimmedKeyword = keyword.trim();
+	if (!trimmedKeyword) {
 		setPanelVisibility(false, isDesktop);
 		result = [];
 		return;
@@ -75,6 +94,15 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 			console.error("Pagefind is not available in production environment.");
 		}
 
+		const normalizedQuery = trimmedKeyword.toLowerCase();
+		const stripTags = (text: string) => text.replace(/<[^>]*>/g, " ");
+		searchResults = searchResults.filter((item) => {
+			const title = item?.meta?.title ?? "";
+			const excerpt = stripTags(item?.excerpt ?? "");
+			const haystack = `${title} ${excerpt}`.toLowerCase();
+			return haystack.includes(normalizedQuery);
+		});
+
 		result = searchResults;
 		setPanelVisibility(result.length > 0, isDesktop);
 	} catch (error) {
@@ -87,6 +115,23 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 };
 
 onMount(() => {
+	const handlePageChange = () => {
+		resetSearchState();
+	};
+
+	document.addEventListener("swup:contentReplaced", handlePageChange);
+	document.addEventListener("swup:pageView", handlePageChange);
+	document.addEventListener("astro:page-load", handlePageChange);
+	document.addEventListener("swup:visitStart", handlePageChange);
+
+	const hookCleanups: Array<() => void> = [];
+	const swup = (window as typeof window & { swup?: any }).swup;
+	if (swup?.hooks?.on) {
+		hookCleanups.push(swup.hooks.on("content:replace", handlePageChange));
+		hookCleanups.push(swup.hooks.on("page:view", handlePageChange));
+		hookCleanups.push(swup.hooks.on("visit:start", handlePageChange));
+	}
+
 	const initializeSearch = () => {
 		initialized = true;
 		pagefindLoaded =
@@ -123,15 +168,27 @@ onMount(() => {
 			}
 		}, 2000); // Adjust timeout as needed
 	}
+
+	return () => {
+		document.removeEventListener("swup:contentReplaced", handlePageChange);
+		document.removeEventListener("swup:pageView", handlePageChange);
+		document.removeEventListener("astro:page-load", handlePageChange);
+		document.removeEventListener("swup:visitStart", handlePageChange);
+		hookCleanups.forEach((cleanup) => {
+			if (typeof cleanup === "function") {
+				cleanup();
+			}
+		});
+	};
 });
 
-$: if (initialized && keywordDesktop) {
+$: if (initialized) {
 	(async () => {
 		await search(keywordDesktop, true);
 	})();
 }
 
-$: if (initialized && keywordMobile) {
+$: if (initialized) {
 	(async () => {
 		await search(keywordMobile, false);
 	})();
@@ -192,7 +249,33 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
     outline: 0;
   }
   .search-panel {
-    max-height: calc(100vh - 100px);
+    max-height: calc(100dvh - 12rem);
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--search-scrollbar-bg) transparent;
+  }
+  .search-panel::-webkit-scrollbar {
+    width: 10px;
+  }
+  .search-panel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .search-panel::-webkit-scrollbar-thumb {
+    background-color: var(--search-scrollbar-bg);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  .search-panel::-webkit-scrollbar-thumb:hover {
+    background-color: var(--search-scrollbar-bg-hover);
+  }
+  .search-panel::-webkit-scrollbar-thumb:active {
+    background-color: var(--search-scrollbar-bg-active);
+  }
+  @media (max-width: 640px) {
+    #search-bar input,
+    #search-bar-inside input {
+      font-size: 16px;
+    }
   }
 </style>

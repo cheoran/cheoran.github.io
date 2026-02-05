@@ -1,0 +1,153 @@
+---
+title: "06 Process & Service Management"
+published: 2026-02-06
+description: "핵심 개념, 실습, 점검"
+image: "assets/cover.svg"
+tags: ["linux", "학습"]
+category: "리눅스"
+draft: true
+showCover: false
+---
+
+---
+
+:::note[섹션 개요]
+
+- 프로세스 상태를 확인하고 제어한다.
+- systemd 서비스 단위 파일을 이해한다.
+- 리소스 사용률을 측정한다.
+  :::
+
+## 한줄 요약
+
+프로세스와 서비스를 구분하고 기본 관리 흐름을 익힌다.
+
+## 핵심 개념
+
+**PID, PPID**
+PID는 프로세스 번호다. PPID는 “부모 프로세스 번호”로, 어떤 프로세스가 누구에 의해 생성됐는지 보여준다.
+
+**foreground / background**
+터미널을 차지하는 것이 foreground, 뒤에서 돌아가는 것이 background다. 서버에서는 대부분 백그라운드로 돈다.
+
+**nice / renice**
+CPU 우선순위를 조정하는 값이다. 갑자기 리소스를 많이 먹는 프로세스가 있을 때 완화할 수 있다.
+
+**SIGTERM vs SIGKILL**
+SIGTERM은 “정상 종료 요청”, SIGKILL은 “즉시 강제 종료”다. 가능한 SIGTERM을 먼저 쓰고, 안 될 때만 SIGKILL을 쓴다.
+
+**서비스 단위 파일 위치**
+기본 단위 파일은 `/usr/lib/systemd/system`, 로컬 오버라이드는 `/etc/systemd/system`에 위치한다. 수정은 가능한 `/etc` 쪽에서 한다.
+
+---
+
+## 필수 명령어
+
+- `ps aux`, `top`, `htop`
+- `kill`, `pkill`, `nice`, `renice`
+- `systemctl`, `journalctl`
+
+---
+
+## 실습 1: 프로세스 확인
+
+```bash
+lin> ps aux | head
+```
+
+이 명령을 사용하는 이유
+- 현재 실행 중인 프로세스를 목록으로 확인한다.
+
+예상 결과(예시):
+```text
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1 169820  9800 ?        Ss   09:00   0:02 /sbin/init
+```
+
+```bash
+lin> top
+```
+
+이 명령을 사용하는 이유
+- 실시간으로 CPU/메모리 사용량과 프로세스를 본다.
+
+예상 결과(예시):
+- 화면 상단에 load, CPU, 메모리 요약
+- 아래에 프로세스 목록
+
+---
+
+## 실습 2: 프로세스 종료
+
+```bash
+lin> sleep 1000 &
+lin> ps aux | grep sleep
+lin> kill <PID>
+```
+
+이 명령을 사용하는 이유
+- 정상 종료(SIGTERM)를 보내는 연습이다.
+
+예상 결과(예시):
+- `sleep` 프로세스가 목록에서 사라짐
+
+---
+
+## 실습 3: 서비스 로그 확인
+
+```bash
+lin> systemctl status systemd-resolved
+lin> journalctl -u systemd-resolved -n 50
+```
+
+이 명령을 사용하는 이유
+- 서비스 상태와 로그를 함께 확인하는 습관을 만든다.
+
+예상 결과(예시):
+```text
+Active: active (running)
+```
+
+---
+
+## 체크포인트
+
+- SIGTERM과 SIGKILL 차이를 말할 수 있는가?
+- systemd 서비스 파일이 기본/오버라이드 어디에 있는지 말할 수 있는가?
+
+---
+
+## 트러블슈팅
+
+- 프로세스가 죽지 않으면 `kill -9` 사용 전 원인 확인
+- 서비스 반복 재시작: `journalctl -xe`로 원인 파악
+
+---
+
+## 06.6 리소스 튜닝 & QoS
+
+이 영역은 운영 환경에서 성능을 미세 조정할 때 쓰인다. 지금 당장 외우기보다 “증상이 생겼을 때 원인을 좁혀가며 적용”하는 개념으로 이해하면 된다.
+먼저 측정으로 병목을 찾고, 범위를 좁힌 뒤, 작은 변경을 적용하고 다시 측정한다.
+
+- systemd slice 활용: `systemctl set-property mysvc.service CPUQuota=50% MemoryMax=1G`
+  - 한 서비스가 리소스를 독점할 때 상한을 걸어 “다른 서비스가 죽지 않게” 만든다.
+  - CPUQuota는 CPU 비율 제한, MemoryMax는 메모리 상한이다.
+- cgroups v2 확인: `ls /sys/fs/cgroup`; `systemd.unified_cgroup_hierarchy=1`
+  - 리소스를 “그룹 단위”로 묶어 제한하고 모니터링하는 커널 기능이다.
+  - systemd 서비스 단위 제한도 cgroups 위에서 동작한다.
+- ulimit: `/etc/security/limits.d/app.conf`에 `nofile`, `nproc` 설정
+  - 파일 핸들이 모자라거나 프로세스 생성 실패가 날 때 상한을 조정한다.
+  - `nofile`은 열린 파일 수, `nproc`은 프로세스/스레드 수 제한이다.
+- 커널 파라미터(sysctl) 주요 항목
+  - 메모리
+    - `vm.swappiness=10` : 스왑 사용을 줄여 메모리 기반 처리 성능을 우선한다.
+    - `vm.dirty_ratio=15` : 디스크로 밀어낼 더티 페이지 임계치를 조정한다.
+    - `vm.max_map_count` : 많은 메모리 매핑을 쓰는 앱(예: 검색엔진)에서 부족하면 올린다.
+  - 네트워크 큐
+    - `net.core.somaxconn=1024` : 서버 accept 대기열 상한(동시 연결 폭주 대응).
+    - `net.core.netdev_max_backlog=4096` : NIC 수신 큐가 가득 차 패킷 드롭이 날 때 조정.
+  - 포트 고갈 방지
+    - `net.ipv4.ip_local_port_range = 1024 65000` : 클라이언트가 쓸 수 있는 포트 범위를 늘린다.
+    - `net.ipv4.tcp_tw_reuse=1` : TIME_WAIT 포트 재사용으로 단시간 대량 연결을 버틴다.
+- 측정 → 조정 → 재측정
+  - `pidstat`(프로세스별 CPU/메모리), `iostat -x`(디스크), `perf stat`(CPU 카운터), `systemd-cgtop`(cgroup)으로 변화 전후를 비교한다.

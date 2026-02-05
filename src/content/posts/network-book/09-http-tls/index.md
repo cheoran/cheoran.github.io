@@ -1,6 +1,6 @@
 ---
-title: "09 HTTP와 TLS "
-published: 2026-01-09
+title: "09 HTTP와 TLS"
+published: 2026-01-03T20:00:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false
@@ -20,7 +20,7 @@ draft: false
 
 ---
 
-## 09.1 HTTP 구조
+## 09.1 HTTP(Hypertext Transfer Protocol) 구조
 
 :::note[HTTP]
 
@@ -47,7 +47,7 @@ Content-Type: text/html
 
 ---
 
-## 09.2 TLS (HTTPS)
+## 09.2 TLS(Transport Layer Security)
 
 :::note[TLS]
 
@@ -67,7 +67,7 @@ Content-Type: text/html
 
 ![assets/http_tls_flow.png](./assets/http_tls_flow.webp)
 
-> 그림 09-1. HTTPS(HTTP over TLS) 통신 흐름
+> 그림 09-1. HTTPS 통신 흐름
 
 ---
 
@@ -166,7 +166,7 @@ lin> openssl s_client -connect example.com:443 -servername example.com
 
 ---
 
-## 8.x TLS/PKI 기본 구조
+## 09.12 TLS/PKI 기본 구조
 
 TLS는 **PKI(공개키 기반 구조)** 위에서 동작한다.
 
@@ -181,7 +181,7 @@ TLS는 **PKI(공개키 기반 구조)** 위에서 동작한다.
 - 중간자 공격 방지
 - 서버 신원 보장
 
-## 실무 포인트
+## 09.13 실무 포인트
 
 - 인증서 만료일 관리 필수
 - SAN(Subject Alternative Name) 확인 중요
