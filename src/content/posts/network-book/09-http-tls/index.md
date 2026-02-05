@@ -1,6 +1,6 @@
 ---
 title: "09 HTTP와 TLS"
-published: 2026-01-09
+published: 2026-01-03T20:00:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false

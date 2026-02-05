@@ -1,7 +1,7 @@
 ---
 
 title: "02 계층과 프로토콜"
-published: 2026-01-02
+published: 2025-12-09T11:00:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 tags: ["network", "학습"]

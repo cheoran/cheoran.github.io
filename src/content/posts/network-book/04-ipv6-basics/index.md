@@ -1,6 +1,6 @@
 ---
 title: "04 IPv6 기초"
-published: 2026-01-04
+published: 2025-12-15T12:00:00+09:00
 description: "주소 구조, 듀얼스택, 라우팅"
 image: "assets/cover.svg"
 showCover: false

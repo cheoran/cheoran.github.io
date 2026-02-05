@@ -1,6 +1,6 @@
 ---
 title: "05 L2 스위칭"
-published: 2026-01-05
+published: 2025-12-22T19:00:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false

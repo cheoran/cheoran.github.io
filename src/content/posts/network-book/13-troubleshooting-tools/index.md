@@ -1,6 +1,6 @@
 ---
 title: "13 트러블슈팅 도구"
-published: 2026-01-13
+published: 2026-01-17T11:00:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false

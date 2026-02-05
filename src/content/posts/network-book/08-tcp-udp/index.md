@@ -1,6 +1,6 @@
 ---
 title: "08 TCP와 UDP"
-published: 2026-01-08
+published: 2026-01-03T10:00:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false

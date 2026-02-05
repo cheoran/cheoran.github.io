@@ -1,6 +1,6 @@
 ---
 title: "15 핵심 실습 (상세)"
-published: 2026-01-15
+published: 2026-01-24T10:00:00+09:00
 description: "- VM1 ↔ VM2 ping 성공"
 image: "assets/cover.svg"
 showCover: false

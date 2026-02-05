@@ -1,6 +1,6 @@
 ---
 title: "07 DNS와 DHCP"
-published: 2026-01-07
+published: 2025-12-28T20:30:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false

@@ -1,6 +1,6 @@
 ---
 title: "17 체크리스트 & 퀴즈 (상세)"
-published: 2026-01-17
+published: 2026-01-29T12:30:00+09:00
 description: "최종 체크리스트와 퀴즈, 모범답안을 정리했습니다."
 image: "assets/cover.svg"
 showCover: false

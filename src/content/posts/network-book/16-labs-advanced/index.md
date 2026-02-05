@@ -1,6 +1,6 @@
 ---
 title: "16 심화 실습 (상세)"
-published: 2026-01-16
+published: 2026-01-27T18:00:00+09:00
 description: "심화 실습: 로드밸런싱, WireGuard, 장애 대응"
 image: "assets/cover.svg"
 showCover: false

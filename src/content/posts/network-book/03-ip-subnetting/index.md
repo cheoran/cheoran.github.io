@@ -1,6 +1,6 @@
 ---
 title: "03 IP 주소와 서브넷"
-published: 2026-01-03
+published: 2025-12-09T20:00:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 tags: ["network", "학습"]

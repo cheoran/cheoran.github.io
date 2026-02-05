@@ -1,6 +1,6 @@
 ---
 title: "12 VPN과 터널"
-published: 2026-01-12
+published: 2026-01-11T19:30:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false

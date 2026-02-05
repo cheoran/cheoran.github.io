@@ -1,6 +1,6 @@
 ---
 title: "18 정답 및 해설"
-published: 2026-01-18
+published: 2026-01-31T16:00:00+09:00
 description: "이 장은 각 섹션의 복습 문제에 대한 정답과 간단한 해설을 제공합니다."
 image: "assets/cover.svg"
 showCover: false

@@ -1,6 +1,6 @@
 ---
 title: "10 방화벽과 NAT"
-published: 2026-01-10
+published: 2026-01-07T09:30:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 showCover: false

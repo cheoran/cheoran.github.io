@@ -1,6 +1,6 @@
 ---
 title: "01 네트워크 기초 개념"
-published: 2026-01-01
+published: 2025-12-03T10:30:00+09:00
 description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 tags: ["network", "학습"]

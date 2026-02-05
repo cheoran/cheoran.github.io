@@ -1,6 +1,6 @@
 ---
 title: "14 실습 환경 구축 (VirtualBox 상세)"
-published: 2026-01-14
+published: 2026-01-19T20:30:00+09:00
 description: "실습 환경 구축"
 image: "assets/cover.svg"
 showCover: false
