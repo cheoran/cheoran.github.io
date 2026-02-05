@@ -5,7 +5,7 @@ description: "클라우드 운영 실무 보강"
 image: "assets/cover.svg"
 tags: ["linux", "학습"]
 category: "리눅스"
-draft: false
+draft: true
 showCover: false
 ---
 

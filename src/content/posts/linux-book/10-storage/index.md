@@ -5,7 +5,7 @@ description: "핵심 개념, 실습, 점검"
 image: "assets/cover.svg"
 tags: ["linux", "학습"]
 category: "리눅스"
-draft: false
+draft: true
 showCover: false
 ---
 
