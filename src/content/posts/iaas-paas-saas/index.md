@@ -32,7 +32,7 @@ showCover: false
 
 ## IaaS, PaaS, SaaS를 나누는 기준
 
-세 모델의 본질은 하나다. <strong>누가 어디까지 관리하느냐(관리 책임 분담)</strong>에 있다.
+<strong>누가 어디까지 관리하느냐(관리 책임 분담)</strong>에 있다.
 
 ![IaaS PaaS SaaS 책임 분담 다이어그램](./assets/cloud-service-model.svg)
 
