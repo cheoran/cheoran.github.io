@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900" role="img" aria-labelledby="title desc">
+	<title id="title">On-site IaaS PaaS SaaS management responsibility model</title>
+	<desc id="desc">Comparison chart showing which layers are managed by users versus service providers across On-site, IaaS, PaaS, and SaaS.</desc>
+	<defs>
+		<linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+			<stop offset="0%" stop-color="#0a0f17" />
+			<stop offset="100%" stop-color="#05070c" />
+		</linearGradient>
+		<filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+			<feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.35" />
+		</filter>
+		<style>
+			.title {
+				font: 800 44px "Pretendard", "Noto Sans KR", sans-serif;
+				fill: #f3f7ff;
+				letter-spacing: 0.4px;
+			}
+			.subtitle {
+				font: 600 22px "Pretendard", "Noto Sans KR", sans-serif;
+				fill: #9db2d1;
+			}
+			.column {
+				font: 800 44px "Pretendard", "Noto Sans KR", sans-serif;
+				fill: #ffffff;
+			}
+			.layer {
+				font: 700 34px "Pretendard", "Noto Sans KR", sans-serif;
+				fill: #f6fbff;
+			}
+			.legend {
+				font: 650 30px "Pretendard", "Noto Sans KR", sans-serif;
+				fill: #e8f0ff;
+			}
+		</style>
+	</defs>
+
+	<rect x="0" y="0" width="1280" height="900" fill="url(#bg)" />
+	<text x="640" y="72" text-anchor="middle" class="title">Cloud Service Model Responsibility Matrix</text>
+	<text x="640" y="112" text-anchor="middle" class="subtitle">사용자와 서비스 제공자의 관리 책임 범위 비교</text>
+
+	<text x="205" y="170" text-anchor="middle" class="column">On-site</text>
+	<text x="485" y="170" text-anchor="middle" class="column">IaaS</text>
+	<text x="765" y="170" text-anchor="middle" class="column">PaaS</text>
+	<text x="1045" y="170" text-anchor="middle" class="column">SaaS</text>
+
+	<g filter="url(#softShadow)">
+		<rect x="90" y="196" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="90" y="266" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="90" y="336" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="90" y="406" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="90" y="476" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="90" y="546" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="90" y="616" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="90" y="686" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="90" y="756" width="230" height="58" rx="14" fill="#03a9c7" />
+
+		<rect x="370" y="196" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="370" y="266" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="370" y="336" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="370" y="406" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="370" y="476" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="370" y="546" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="370" y="616" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="370" y="686" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="370" y="756" width="230" height="58" rx="14" fill="#f41f06" />
+
+		<rect x="650" y="196" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="650" y="266" width="230" height="58" rx="14" fill="#03a9c7" />
+		<rect x="650" y="336" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="650" y="406" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="650" y="476" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="650" y="546" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="650" y="616" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="650" y="686" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="650" y="756" width="230" height="58" rx="14" fill="#f41f06" />
+
+		<rect x="930" y="196" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="930" y="266" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="930" y="336" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="930" y="406" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="930" y="476" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="930" y="546" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="930" y="616" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="930" y="686" width="230" height="58" rx="14" fill="#f41f06" />
+		<rect x="930" y="756" width="230" height="58" rx="14" fill="#f41f06" />
+	</g>
+
+	<text x="205" y="235" text-anchor="middle" class="layer">Applications</text>
+	<text x="205" y="305" text-anchor="middle" class="layer">Data</text>
+	<text x="205" y="375" text-anchor="middle" class="layer">Runtime</text>
+	<text x="205" y="445" text-anchor="middle" class="layer">Middleware</text>
+	<text x="205" y="515" text-anchor="middle" class="layer">O/S</text>
+	<text x="205" y="585" text-anchor="middle" class="layer">Virtualization</text>
+	<text x="205" y="655" text-anchor="middle" class="layer">Servers</text>
+	<text x="205" y="725" text-anchor="middle" class="layer">Storage</text>
+	<text x="205" y="795" text-anchor="middle" class="layer">Networking</text>
+
+	<text x="485" y="235" text-anchor="middle" class="layer">Applications</text>
+	<text x="485" y="305" text-anchor="middle" class="layer">Data</text>
+	<text x="485" y="375" text-anchor="middle" class="layer">Runtime</text>
+	<text x="485" y="445" text-anchor="middle" class="layer">Middleware</text>
+	<text x="485" y="515" text-anchor="middle" class="layer">O/S</text>
+	<text x="485" y="585" text-anchor="middle" class="layer">Virtualization</text>
+	<text x="485" y="655" text-anchor="middle" class="layer">Servers</text>
+	<text x="485" y="725" text-anchor="middle" class="layer">Storage</text>
+	<text x="485" y="795" text-anchor="middle" class="layer">Networking</text>
+
+	<text x="765" y="235" text-anchor="middle" class="layer">Applications</text>
+	<text x="765" y="305" text-anchor="middle" class="layer">Data</text>
+	<text x="765" y="375" text-anchor="middle" class="layer">Runtime</text>
+	<text x="765" y="445" text-anchor="middle" class="layer">Middleware</text>
+	<text x="765" y="515" text-anchor="middle" class="layer">O/S</text>
+	<text x="765" y="585" text-anchor="middle" class="layer">Virtualization</text>
+	<text x="765" y="655" text-anchor="middle" class="layer">Servers</text>
+	<text x="765" y="725" text-anchor="middle" class="layer">Storage</text>
+	<text x="765" y="795" text-anchor="middle" class="layer">Networking</text>
+
+	<text x="1045" y="235" text-anchor="middle" class="layer">Applications</text>
+	<text x="1045" y="305" text-anchor="middle" class="layer">Data</text>
+	<text x="1045" y="375" text-anchor="middle" class="layer">Runtime</text>
+	<text x="1045" y="445" text-anchor="middle" class="layer">Middleware</text>
+	<text x="1045" y="515" text-anchor="middle" class="layer">O/S</text>
+	<text x="1045" y="585" text-anchor="middle" class="layer">Virtualization</text>
+	<text x="1045" y="655" text-anchor="middle" class="layer">Servers</text>
+	<text x="1045" y="725" text-anchor="middle" class="layer">Storage</text>
+	<text x="1045" y="795" text-anchor="middle" class="layer">Networking</text>
+
+	<rect x="92" y="850" width="28" height="28" rx="5" fill="#03a9c7" />
+	<text x="138" y="873" class="legend">You manage (직접 관리)</text>
+
+	<rect x="560" y="850" width="28" height="28" rx="5" fill="#f41f06" />
+	<text x="606" y="873" class="legend">Service provider manages (제공자 관리)</text>
+</svg>
