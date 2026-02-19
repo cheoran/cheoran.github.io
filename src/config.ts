@@ -51,7 +51,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-  avatar: "/images/avatar.svg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+  avatar: "/images/avatar.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
   name: "Cheolhwan Kim",
   bio: "배운 것을 정리하며 천천히 쌓아가는 기록을 합니다.",
   links: [
