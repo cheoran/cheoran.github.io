@@ -1,21 +1,13 @@
 ---
-title: "08 Networking Basics (Linux)"
+title: "Networking Basics (Linux)"
 published: 2026-02-08
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "리눅스 네트워크 기본 설정과 진단 도구를 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- 인터페이스, IP, 라우팅, DNS를 설정하고 확인한다.
-- 네트워크 장애를 1차 진단한다.
-  :::
 
 ## 한줄 요약
 
@@ -105,13 +97,6 @@ example.com.  300 IN A 93.184.216.34
 
 ---
 
-## 체크포인트
-
-- 기본 게이트웨이를 `ip route`에서 찾을 수 있는가?
-- 리슨 포트를 보고 어떤 프로세스인지 매칭할 수 있는가?
-
----
-
 ## 트러블슈팅
 
 - DNS 실패: `resolvectl` 상태 확인, `/etc/resolv.conf` 점검
@@ -119,7 +104,7 @@ example.com.  300 IN A 93.184.216.34
 
 ---
 
-## 08.4 클라우드 네트워킹 필수
+## 클라우드 네트워킹 필수
 
 아래 내용은 클라우드/운영 환경에서 자주 만나는 네트워크 설정들이다. 당장 외우기보다 “어떤 경우에 쓰는지”를 이해하는 게 중요하다.
 핵심은 “누가 네트워크 설정을 만들고, 어디서 바꾸며, 문제가 생기면 어떤 축부터 확인할지”다.

@@ -1,22 +1,13 @@
 ---
-title: "03 Filesystem Layout"
+title: "Filesystem Layout"
 published: 2026-02-03
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "리눅스 파일시스템 계층 구조와 주요 디렉토리를 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- FHS(파일시스템 표준)를 이해한다.
-- 마운트/언마운트 개념을 잡는다.
-- 네트워크 엔지니어가 자주 보는 경로를 숙지한다.
-  :::
 
 ## 한줄 요약
 
@@ -124,14 +115,6 @@ NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sda      8:0    0   50G  0 disk
 └─sda1   8:1    0   50G  0 part /
 ```
-
----
-
-## 체크포인트
-
-- 설정 파일은 보통 `/etc`에 있다는 걸 알고 있는가?
-- 로그는 보통 `/var/log`에 있다는 걸 알고 있는가?
-- `df`와 `du`의 차이를 설명할 수 있는가?
 
 ---
 

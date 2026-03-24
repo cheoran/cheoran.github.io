@@ -2,7 +2,7 @@
 title: "네임스페이스 개념 정리와 cgroup 차이"
 published: 2026-02-05T10:22:12Z
 description: "네임스페이스 핵심 개념과 cgroup과의 차이를 짧게 정리"
-tags: ["linux", "운영체제"]
+tags: ["linux"]
 category: "리눅스"
 lang: "ko"
 draft: false

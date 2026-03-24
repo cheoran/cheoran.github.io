@@ -1,22 +1,13 @@
 ---
-title: "05 Package Management"
+title: "Package Management"
 published: 2026-02-05
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "apt, yum, dnf 등 패키지 관리 도구를 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- apt 기반 패키지 관리 흐름을 이해한다.
-- 리포지토리와 GPG 키 개념을 이해한다.
-- 실무에서 자주 쓰는 패키지를 설치/삭제할 수 있다.
-  :::
 
 ## 한줄 요약
 
@@ -105,13 +96,6 @@ lin> apt-cache policy curl
 Installed: 8.5.0-1
 Candidate: 8.5.0-1
 ```
-
----
-
-## 체크포인트
-
-- `remove`와 `purge` 차이를 말할 수 있는가?
-- 버전을 고정해야 하는 상황을 하나 설명할 수 있는가?
 
 ---
 

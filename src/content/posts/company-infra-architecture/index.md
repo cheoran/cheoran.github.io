@@ -3,7 +3,7 @@ title: "사내 인프라 구축기: 서버 2대로 HA 환경 만들기"
 published: 2026-03-19
 description: "서버 2대 위에 Cloudflare Tunnel, Docker Compose, Nginx로 사내 서비스 인프라를 구축한 과정을 정리합니다."
 tags: [infrastructure, docker, cloudflare, nginx, devops]
-category: "Infrastructure"
+category: "인프라"
 draft: false
 lang: "ko"
 ---

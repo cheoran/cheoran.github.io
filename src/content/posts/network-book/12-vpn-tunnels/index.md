@@ -1,27 +1,15 @@
 ---
-title: "12 VPN과 터널"
+title: "VPN과 터널"
 published: 2026-01-11T19:30:00+09:00
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-showCover: false
-tags: ["network", "학습"]
+description: "VPN 개념, WireGuard 설정과 터널링 원리를 정리합니다"
+tags: ["network"]
 category: "네트워크"
 draft: false
 ---
 
 ---
 
-:::note[섹션 개요]
-
-- VPN 터널 개념 설명 가능
-- VPN과 터널링을 이해한다.
-- WireGuard 기본 구성을 수행한다.
-
-  :::
-
----
-
-## 12.1 VPN(Virtual Private Network) 개념
+## VPN(Virtual Private Network) 개념
 
 VPN은 **암호화된 터널**을 통해 안전한 통신을 제공한다.
 
@@ -35,7 +23,7 @@ VPN은 **암호화된 터널**을 통해 안전한 통신을 제공한다.
 
 ![assets/vpn_tunnel.png](./assets/vpn_tunnel.webp)
 
-> 그림 12-1. VPN 터널 개념
+> VPN 터널 개념
 
 ### 사용 사례
 
@@ -44,13 +32,13 @@ VPN은 **암호화된 터널**을 통해 안전한 통신을 제공한다.
 
 ---
 
-## 12.2 WireGuard 개요
+## WireGuard 개요
 
 - 설정이 단순하고 성능이 좋음
 
 ---
 
-## 12.3 실습: WireGuard 터널 구성
+## 실습: WireGuard 터널 구성
 
 ### 설치
 
@@ -109,24 +97,12 @@ vm1> ping -c 3 10.10.0.2
 
 ---
 
-## 12.4 체크리스트
-
-- VPN 터널 개념 설명 가능
-- WireGuard 구성 성공
-
-## 12.5 복습 문제
-
-1. VPN이 필요한 이유는?
-2. WireGuard에서 AllowedIPs의 역할은?
-
----
-
-## 12.6 심화 이론: 터널링과 캡슐화
+## 터널링과 캡슐화
 
 - 원래 패킷을 다른 패킷 안에 넣어 전송
 - 외부에서는 내부 주소가 보이지 않음
 
-## 12.7 실전 시나리오
+## 실전 시나리오
 
 ### 상황: 집에서 회사 내부망 접근
 
@@ -134,7 +110,7 @@ vm1> ping -c 3 10.10.0.2
 
 ---
 
-## 12.8 OS별 WireGuard 상태 확인
+## OS별 WireGuard 상태 확인
 
 ### Linux
 
@@ -148,16 +124,7 @@ lin> sudo wg show
 
 ---
 
-## 12.9 문제 + 모범답안
-
-1. **문제**: VPN 터널이 필요한 이유는?
-   **답**: 공용 인터넷에서 안전한 통신.
-2. **문제**: 터널링의 핵심은?
-   **답**: 패킷 캡슐화.
-
----
-
-## 12.10 실전 사례
+## 실전 사례
 
 - 사례 1: VPN 연결되지만 특정 대역 안 됨 → AllowedIPs 누락.
 - 사례 2: 연결이 자주 끊김 → MTU 조정 필요.

@@ -1,21 +1,13 @@
 ---
-title: "07 Text Processing Tools"
+title: "Text Processing Tools"
 published: 2026-02-07
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "grep, sed, awk 등 텍스트 처리 도구를 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- 로그 분석에 필요한 텍스트 처리 도구를 익힌다.
-- 파이프라인을 활용해 문제를 빠르게 진단한다.
-  :::
 
 ## 한줄 요약
 
@@ -97,13 +89,6 @@ lin> grep -E "error|fail" /var/log/syslog | tail -n 20
 
 이 명령을 사용하는 이유
 - 에러 관련 로그만 빠르게 확인한다.
-
----
-
-## 체크포인트
-
-- 파이프라인을 3단 이상 연결해 로그를 필터링할 수 있는가?
-- `grep -E`로 OR 조건을 쓸 수 있는가?
 
 ---
 

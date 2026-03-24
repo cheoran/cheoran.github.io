@@ -2,7 +2,7 @@
 title: "cgroup CPU 제한 실습 (stress)"
 published: 2026-02-04
 description: "CPU 제한을 걸고 stress로 확인하는 간단 실습"
-tags: ["linux", "운영체제"]
+tags: ["linux"]
 category: "리눅스"
 lang: "ko"
 draft: false

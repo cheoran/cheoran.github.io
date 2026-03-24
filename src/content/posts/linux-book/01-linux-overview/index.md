@@ -1,22 +1,13 @@
 ---
-title: "01 Linux Overview"
+title: "Linux Overview"
 published: 2026-02-01
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "리눅스의 역사, 배포판 종류, 기본 구조를 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- 리눅스가 무엇인지 큰 그림을 잡는다.
-- 커널/쉘/유틸리티를 구분해서 설명할 수 있다.
-- 배포판의 차이가 왜 생기는지 이해한다.
-  :::
 
 ## 한줄 요약
 
@@ -120,13 +111,6 @@ lin> ip --help
 예상 결과(예시):
 - `man ip`는 길게 문서가 나온다.
 - `ip --help`는 짧은 요약이 나온다.
-
----
-
-## 체크포인트
-
-- 커널/쉘/유틸리티의 역할을 한 문장으로 설명할 수 있는가?
-- 배포판을 패키지 명령으로 구분할 수 있는가?
 
 ---
 

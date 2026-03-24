@@ -1,26 +1,13 @@
 ---
-
-title: "02 계층과 프로토콜"
+title: "계층과 프로토콜"
 published: 2025-12-09T11:00:00+09:00
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["network", "학습"]
+description: "OSI 7계층과 TCP/IP 모델의 차이, 계층별 역할과 캡슐화를 정리합니다"
+tags: ["network"]
 category: "네트워크"
 draft: false
-showCover: false
-
 ---
 
-:::note[섹션 개요]
-
-- OSI 7계층과 TCP/IP 모델의 차이를 정확히 설명한다.
-- OSI 7계층 순서를 설명 가능
-- 문제를 계층별로 분리해 진단할 수 있다.
-  :::
-
----
-
-## 02.1 OSI(Open Systems Interconnection) 7계층과 TCP/IP(Transmission Control Protocol/Internet Protocol)
+## OSI(Open Systems Interconnection) 7계층과 TCP/IP(Transmission Control Protocol/Internet Protocol)
 
 ### OSI 7계층 (교육용 개념 모델)
 
@@ -41,7 +28,7 @@ showCover: false
 
 ![assets/osi_tcpip.png](./assets/osi_tcpip.webp)
 
-> 그림 02-1. OSI 7계층과 TCP/IP 매핑
+> OSI 7계층과 TCP/IP 매핑
 
 ### 왜 두 모델이 있는가
 
@@ -50,7 +37,7 @@ showCover: false
 
 ---
 
-## 02.2 계층별 핵심 역할 (실무 관점)
+## 계층별 핵심 역할 (실무 관점)
 
 ### 물리 계층
 
@@ -77,7 +64,7 @@ showCover: false
 - HTTP, DNS, SSH
 - 증상: 서비스 자체 오류
 
-## 02.3 계층 분리의 이점
+## 계층 분리의 이점
 
 - 문제 진단이 빠르고 명확해짐
 - 변경 영향 범위를 최소화
@@ -93,7 +80,7 @@ showCover: false
 
 ---
 
-## 02.4 실습 1: 계층 흐름 관찰
+## 실습 1: 계층 흐름 관찰
 
 ### 목표
 
@@ -132,7 +119,7 @@ win> curl -v https://example.com
 
 ---
 
-## 02.5 실습 2: 포트/계층 문제 구분
+## 실습 2: 포트/계층 문제 구분
 
 ### 목표
 
@@ -159,23 +146,7 @@ mac> nc -vz example.com 443
 
 ---
 
-## 02.6 체크리스트
-
-- OSI 7계층 순서를 설명 가능
-- TCP/IP 모델과 매핑 가능
-- 계층별 문제를 구분해서 진단 가능
-
----
-
-## 02.7 복습 문제
-
-1. 전송 계층에서 주로 다루는 것은?
-2. DNS는 OSI 몇 계층인가?
-3. 포트 차단과 DNS 실패의 증상 차이는?
-
----
-
-## 02.8 심화 이론: 캡슐화/역캡슐화
+## 캡슐화/역캡슐화
 
 데이터는 상위 계층에서 하위 계층으로 내려갈 때 **헤더가 붙는다**.
 이를 **캡슐화**라 하고, 수신 측에서는 역으로 **역캡슐화**가 진행된다.
@@ -190,11 +161,11 @@ HTTP 데이터
 
 ![assets/packet_encapsulation.png](./assets/packet_encapsulation.webp)
 
-> 그림 02-2. 캡슐화 과정
+> 캡슐화 과정
 
 ---
 
-## 02.9 OS별 실습: 계층별 문제 진단 순서
+## OS별 실습: 계층별 문제 진단 순서
 
 ### macOS
 
@@ -233,7 +204,7 @@ lin> nc -vz example.com 443
 
 ---
 
-## 02.10 실전 시나리오
+## 실전 시나리오
 
 ### 상황: 특정 사이트만 접속 안 됨
 
@@ -243,16 +214,7 @@ lin> nc -vz example.com 443
 
 ---
 
-## 02.11 문제 + 모범답안
-
-1. **문제**: TCP가 동작하는 계층은?
-   **답**: 전송 계층(OSI 4계층).
-2. **문제**: DNS는 어떤 계층인가?
-   **답**: 응용 계층.
-
----
-
-## 02.12 심화: 캡슐화와 MTU
+## 캡슐화와 MTU
 
 캡슐화 과정에서 **헤더가 계속 붙기 때문에 실제 전송 가능 데이터(페이로드)는 줄어든다**.
 예를 들어 MTU가 1500바이트일 때, TCP/IP 헤더(최소 40바이트)를 제외하면 실제 데이터는 약 1460바이트만 실을 수 있다.
@@ -269,7 +231,7 @@ lin> nc -vz example.com 443
 
 ---
 
-## 02.13 실전 사례
+## 실전 사례
 
 - 사례 1: 링크 다운 → 물리 계층 케이블 불량.
 - 사례 2: DNS는 되지만 서비스 접속 실패 → 전송/응용 문제.

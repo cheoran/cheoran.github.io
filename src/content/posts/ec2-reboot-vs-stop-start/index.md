@@ -2,7 +2,7 @@
 title: "EC2 재부팅 vs 종료 후 시작 차이"
 published: 2026-02-04
 description: "SSH가 안 될 때, 재부팅과 stop/start가 왜 다른지 정리"
-tags: ["aws", "ec2", "운영"]
+tags: ["aws", "ec2"]
 category: "클라우드"
 lang: "ko"
 draft: false

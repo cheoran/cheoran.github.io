@@ -1,22 +1,13 @@
 ---
-title: "04 Users, Groups, Permissions"
+title: "Users, Groups, Permissions"
 published: 2026-02-04
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "사용자, 그룹, 파일 권한 관리를 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- 사용자/그룹/권한 구조를 이해한다.
-- sudo와 최소 권한 원칙을 적용한다.
-- ACL과 umask를 이해한다.
-  :::
 
 ## 한줄 요약
 
@@ -104,13 +95,6 @@ lin> sudo -l
 User ubuntu may run the following commands on this host:
     (ALL : ALL) ALL
 ```
-
----
-
-## 체크포인트
-
-- 750 권한이 누구에게 어떤 권한인지 말할 수 있는가?
-- sudo 권한을 넓게 주면 왜 위험한지 말할 수 있는가?
 
 ---
 

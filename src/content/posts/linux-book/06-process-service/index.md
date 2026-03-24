@@ -1,22 +1,13 @@
 ---
-title: "06 Process & Service Management"
+title: "Process & Service Management"
 published: 2026-02-06
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "프로세스 관리와 systemd 서비스 운영을 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- 프로세스 상태를 확인하고 제어한다.
-- systemd 서비스 단위 파일을 이해한다.
-- 리소스 사용률을 측정한다.
-  :::
 
 ## 한줄 요약
 
@@ -110,13 +101,6 @@ Active: active (running)
 
 ---
 
-## 체크포인트
-
-- SIGTERM과 SIGKILL 차이를 말할 수 있는가?
-- systemd 서비스 파일이 기본/오버라이드 어디에 있는지 말할 수 있는가?
-
----
-
 ## 트러블슈팅
 
 - 프로세스가 죽지 않으면 `kill -9` 사용 전 원인 확인
@@ -124,7 +108,7 @@ Active: active (running)
 
 ---
 
-## 06.6 리소스 튜닝 & QoS
+## 리소스 튜닝 & QoS
 
 이 영역은 운영 환경에서 성능을 미세 조정할 때 쓰인다. 지금 당장 외우기보다 “증상이 생겼을 때 원인을 좁혀가며 적용”하는 개념으로 이해하면 된다.
 먼저 측정으로 병목을 찾고, 범위를 좁힌 뒤, 작은 변경을 적용하고 다시 측정한다.

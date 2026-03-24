@@ -2,7 +2,7 @@
 title: "Cgroups v1 vs v2"
 published: 2026-02-04
 description: "실습과 교재가 달라 헷갈렸던 포인트 정리"
-tags: ["linux", "운영체제", "학습"]
+tags: ["linux"]
 category: "리눅스"
 lang: "ko"
 draft: false

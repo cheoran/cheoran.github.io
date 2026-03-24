@@ -1,21 +1,13 @@
 ---
-title: "11 Logging & Monitoring"
+title: "Logging & Monitoring"
 published: 2026-02-11
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "journald, syslog, 로그 분석과 모니터링 도구를 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- 시스템 로그 경로와 journalctl을 활용한다.
-- 기본 모니터링 명령어로 상태를 파악한다.
-  :::
 
 ## 한줄 요약
 
@@ -95,13 +87,6 @@ Mem:  1.9Gi total,  1.2Gi used,  0.4Gi free
 
 ---
 
-## 체크포인트
-
-- 특정 서비스 에러 로그만 골라 볼 수 있는가?
-- CPU/메모리 병목을 어떤 지표로 판단하는지 말할 수 있는가?
-
----
-
 ## 트러블슈팅
 
 - 로그가 없을 때: journald 상태, 권한 확인
@@ -109,7 +94,7 @@ Mem:  1.9Gi total,  1.2Gi used,  0.4Gi free
 
 ---
 
-## 11.4 로그 수집 파이프라인
+## 로그 수집 파이프라인
 
 운영 환경에서는 로그를 한 서버에만 두지 않고 중앙으로 모은다.
 
@@ -120,7 +105,7 @@ Mem:  1.9Gi total,  1.2Gi used,  0.4Gi free
 
 ---
 
-## 11.5 메트릭·알람 기본
+## 메트릭·알람 기본
 
 경보는 “장애 전에 알려주는 장치”다. 기준선을 정해두는 게 중요하다.
 
@@ -131,7 +116,7 @@ Mem:  1.9Gi total,  1.2Gi used,  0.4Gi free
 
 ---
 
-## 11.6 트레이싱/프로파일링 맛보기
+## 트레이싱/프로파일링 맛보기
 
 성능 문제를 깊게 분석할 때 쓰는 도구들이다. 일단 이름과 역할만 알아두면 된다.
 
@@ -140,7 +125,7 @@ Mem:  1.9Gi total,  1.2Gi used,  0.4Gi free
 
 ---
 
-## 11.7 시간 동기화
+## 시간 동기화
 
 시간이 어긋나면 로그 순서가 꼬이고 TLS 인증에도 문제가 생긴다.
 

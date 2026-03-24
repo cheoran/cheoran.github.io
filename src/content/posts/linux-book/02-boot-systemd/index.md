@@ -1,22 +1,13 @@
 ---
-title: "02 Boot & systemd"
+title: "Boot & systemd"
 published: 2026-02-02
-description: "핵심 개념, 실습, 점검"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "부팅 과정과 systemd 서비스 관리를 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- 리눅스가 켜질 때 어떤 순서로 시작되는지 이해한다.
-- systemd로 서비스를 켜고 끄는 기본 흐름을 익힌다.
-- 장애가 나면 복구 모드로 들어가 최소한의 점검을 할 수 있다.
-  :::
 
 ## 한줄 요약
 
@@ -123,14 +114,6 @@ Created symlink /etc/systemd/system/default.target → /lib/systemd/system/multi
 해석:
 - 첫 줄은 현재 기본 타겟
 - 두 번째 줄은 변경 적용 결과
-
----
-
-## 체크포인트
-
-- `status`는 “지금 상태”, `enable`은 “다음 부팅 자동 시작”임을 설명할 수 있는가?
-- 특정 서비스 로그를 `journalctl -u`로 확인할 수 있는가?
-- `multi-user`와 `graphical`의 차이를 설명할 수 있는가?
 
 ---
 

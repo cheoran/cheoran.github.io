@@ -1,21 +1,13 @@
 ---
-title: "15 Cloud Ops Basics"
+title: "Cloud Ops Basics"
 published: 2026-02-15
-description: "클라우드 운영 실무 보강"
-image: "assets/cover.svg"
-tags: ["linux", "학습"]
+description: "클라우드 환경에서의 리눅스 운영 기초를 정리합니다"
+tags: ["linux"]
 category: "리눅스"
 draft: true
-showCover: false
 ---
 
 ---
-
-:::note[섹션 개요]
-
-- 클라우드 엔지니어가 자주 쓰는 리눅스 운영 포인트를 보강한다.
-- systemd, 배포판 차이, 호스트 보안, 스토리지/백업, 관측/성능을 빠르게 정리한다.
-  :::
 
 ## 한줄 요약
 
@@ -136,16 +128,6 @@ lin> sar -u 1 3
 
 이 명령을 사용하는 이유
 - CPU/메모리/디스크의 병목을 빠르게 판단한다.
-
----
-
-## 체크포인트
-
-- systemd로 서비스 재시작 정책을 설정할 수 있는가?
-- 배포판/SELinux 상태를 빠르게 확인할 수 있는가?
-- SG/NACL과 호스트 방화벽 경계를 말할 수 있는가?
-- 암호화 스토리지와 백업 흐름을 설명할 수 있는가?
-- CPU/IO 병목을 1차 진단할 수 있는가?
 
 ---
 
